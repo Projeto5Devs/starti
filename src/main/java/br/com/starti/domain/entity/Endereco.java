@@ -2,6 +2,7 @@ package br.com.starti.domain.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,29 +22,36 @@ public class Endereco implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idEndereco;
+	@Column(name="id_endereco")
+	private int idEndereco;
 	
 	@NotBlank
+	@Column
 	@Size(max=100)
 	private String rua;
 	
 	@NotBlank
+	@Column
 	@Size(max=10)
 	private String numero;
 	
 	@NotBlank
+	@Column
 	@Size(max=50)
 	private String bairro;
 	
 	@NotBlank
+	@Column
 	@Size(max=10)
 	private String cep;
 	
 	@NotBlank
+	@Column
 	@Size(max=50)
 	private String cidade;
 	
 	@NotBlank
+	@Column
 	@Size(max=2)
 	private String uf;
 }

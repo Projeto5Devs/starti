@@ -20,14 +20,14 @@ public class Inscricao implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
-	@JoinColumn(name="candidato_id_candidato", referencedColumnName="idCandidato")
-	private Candidato candidato;
+	@JoinColumn(name="id_candidato", table="candidato")
+	private int candidato;
 	
 	@ManyToOne
-	@JoinColumn(name="empresa_id_empresa", referencedColumnName="idEmpresa")
-	private Empresa empresa;
+	@JoinColumn(name="id_empresa", table="empresa")
+	private int empresa;
 	
 	@NotBlank
-	@Column
+	@Column(name="data_inscricao")
 	private Date dataInscricao;
 }

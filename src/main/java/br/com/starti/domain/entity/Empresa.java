@@ -1,14 +1,13 @@
 package br.com.starti.domain.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -26,37 +25,57 @@ public class Empresa implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotBlank
-	@Column
+	@Column(name="id_empresa")
 	private int idEmpresa;
 	
 	@NotBlank
-	@Column
+	@Column(name="nome_fantasia")
+	@Size(max=80)
 	private String nomeFantasia;
 	
 	@NotBlank
-	@Column
-	private String cnpj;
-	
-	@NotBlank
-	@Column
+	@Column(name="razao_social")
+	@Size(max=45)
 	private String razaoSocial;
 	
 	@NotBlank
 	@Column
+	@Size(max=45)
 	private String segmento;
 	
 	@NotBlank
+	@Column
+	@Size(max=20)
+	private String cnpj;
+	
+	@NotBlank
+	@Column
 	@Size(max=25)
 	private String telefone;
 	
 	@NotBlank
 	@Email
+	@Column
 	@Size(max=80)
 	private String email;
 	
 	@Size(max=150)
+	@Column
 	private String website;
 	
-	@OneToMany(mappedBy="endereco")
-	private List<Endereco>endereco;
+	@NotBlank
+	@Column
+	@Size(max=45)
+	private String senha;
+	
+	@NotBlank
+	@Column(name="ultima_vez_logado")
+	@Size(max=45)
+	private String ultimaVezLogado;
+	
+	@JoinColumn(name="id_endereco", table="endereco")
+	private int idEndereco;
+	
+	@JoinColumn(name="id_permissao", table="permissao")
+	private int idPermissao;
 }
