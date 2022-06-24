@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -54,4 +55,13 @@ public class Endereco implements Serializable {
 	@Column
 	@Size(max=2)
 	private String uf;
+	
+	@OneToOne(mappedBy = "endereco")
+	private Candidato candidato;
+	
+	@OneToOne(mappedBy = "endereco")
+	private Empresa empresa;
+	
+	@OneToOne(mappedBy = "endereco")
+	private Funcionario funcionario;
 }

@@ -3,14 +3,16 @@ package br.com.starti.domain.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -48,34 +50,16 @@ public class Candidato implements Serializable{
 	@Column(name="data_de_nascimento")
 	private Date dataDeNascimento;
 	
-	@NotBlank
-	@Column
-	@Size(max=25)
-	private String telefone;
+	@Embedded
+	private Contato contato;
 	
-	@NotBlank
-	@Email
-	@Column
-	@Size(max=80)
-	private String email;
+	@Embedded
+	private Login login;
 	
-	@Size(max=150)
-	@Column
-	private String website;
-	
-	@NotBlank
-	@Column
-	@Size(max=45)
-	private String senha;
-	
-	@NotBlank
-	@Column(name="ultima_vez_logado")
-	@Size(max=45)
-	private String ultimaVezLogado;
-	
-	@JoinColumn(name="id_endereco", table="endereco")
-	private int idEndereco;
-	
-	@JoinColumn(name="id_permissao", table="permissao")
-	private int idPermissao;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="endereco_id_endereco", referencedColumnName = "id_endereco")
+	private Endereco endereco;
+//	
+//	@JoinColumn(name="id_permissao", table="permissao")
+//	private int idPermissao;
 }
