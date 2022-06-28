@@ -1,12 +1,17 @@
 package br.com.starti.domain.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,7 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name ="tb_vaga")
+@Table(name ="vaga")
 @Data
 @NoArgsConstructor
 
@@ -30,36 +35,35 @@ public class Vaga implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_vaga")
 	@NotBlank
-	private Long id;
+	private int id;
 	
 	@NotBlank
-	@Size(max=50000)
+	@Size(max=255)
 	@Column(name = "descricao_vaga")
 	private String descricao;
 	
 	@NotBlank
-	@Size(max=100)
 	@Column(name = "salario_vaga")
 	private double salario;
 	
 	@NotBlank
-	@Size(max=200)
+	@Size(max=15)
 	@Column(name = "modalidade_vaga")
 	private String modalidade;
 	
 	@NotBlank
-	@Size(max=8)
 	@Column(name = "prazo_vaga")
-	private String prazo;
+	private Date prazo;
 	
 	@NotBlank
 	@Size(max=150)
 	@Column(name = "cargo_vaga")
 	private String cargo;
 	
-	@NotBlank
-	@Size(max=50000)
-	@Column(name = "empresa_vaga")
-	private String empresa;
+	@ManyToOne
+    @JoinColumn(name="empresa_id_empresa", nullable=false)
+	private Empresa empresa;
 	
+	@OneToMany(mappedBy = "vaga")
+    Set<Inscricao> inscricoes;
 }

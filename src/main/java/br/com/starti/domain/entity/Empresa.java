@@ -1,6 +1,7 @@
 package br.com.starti.domain.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,9 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -60,6 +61,9 @@ public class Empresa implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="endereco_id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy="empresa")
+	private Set<Vaga> vagas;
 //	
 //	@JoinColumn(name="id_permissao", table="permissao")
 //	private int idPermissao;

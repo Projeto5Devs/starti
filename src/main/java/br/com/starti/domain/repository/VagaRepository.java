@@ -10,6 +10,6 @@ import br.com.starti.domain.entity.Vaga;
  * Incluir, excluir, alterar e consultar
  */
 @Repository
-public interface VagaRepository  extends JpaRepository<Vaga, Long> {
+public interface VagaRepository  extends JpaRepository<Vaga, Integer> {
 
 }
