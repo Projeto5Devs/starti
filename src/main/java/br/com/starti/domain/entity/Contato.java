@@ -26,4 +26,7 @@ public class Contato {
 	@Size(max=150)
 	@Column
 	private String website;
+
+
+	
 }

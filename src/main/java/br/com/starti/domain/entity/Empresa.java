@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Empresa implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotBlank
+
 	@Column(name="id_empresa")
 	private int idEmpresa;
 	
@@ -58,13 +59,12 @@ public class Empresa implements Serializable{
 	@Embedded
 	private Login login;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="endereco_id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 	
 	@OneToMany(mappedBy="empresa")
 	private Set<Vaga> vagas;
-//	
-//	@JoinColumn(name="id_permissao", table="permissao")
-//	private int idPermissao;
+
+
 }
