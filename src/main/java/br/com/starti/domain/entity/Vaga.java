@@ -17,24 +17,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @Table(name ="vaga")
-@Data
-@NoArgsConstructor
-
 public class Vaga implements Serializable{
 	
-	/**
-	 * Cadastrar Vaga
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_vaga")
-	@NotBlank
 	private Long id;
 	
 	@NotBlank

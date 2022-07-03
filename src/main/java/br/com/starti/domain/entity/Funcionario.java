@@ -29,7 +29,6 @@ public class Funcionario implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotBlank
 	private Long idFuncionario;
 	
 	@NotBlank

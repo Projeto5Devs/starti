@@ -29,7 +29,6 @@ public class Candidato implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotBlank
 	@Column(name="id_candidato")
 	private Long idCandidato;
 	
