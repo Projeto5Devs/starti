@@ -37,7 +37,7 @@ public class EnderecoController {
 		
 		@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 		@ResponseStatus(HttpStatus.OK)
-		public Endereco findById(@PathVariable("id")Integer id) {
+		public Endereco findById(@PathVariable("id")Long id) {
 			return enderecoService.buscarPorId(id);
 		}
 		
@@ -55,7 +55,7 @@ public class EnderecoController {
 		
 		@DeleteMapping(value="/{id}")
 		@ResponseStatus(HttpStatus.OK)
-		public void delete(@PathVariable("id")Integer id) {
+		public void delete(@PathVariable("id")Long id) {
 			enderecoService.deletar(id);
 		}
 }

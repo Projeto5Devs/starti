@@ -38,7 +38,7 @@ public class EmpresaController {
 	
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Empresa findById(@PathVariable("id")Integer id) {
+	public Empresa findById(@PathVariable("id")Long id) {
 		return empresaService.buscarPorId(id);
 	}
 	
@@ -56,7 +56,7 @@ public class EmpresaController {
 	
 	@DeleteMapping(value="/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@PathVariable("id")Integer id) {
+	public void delete(@PathVariable("id")Long id) {
 		empresaService.deletar(id);
 	}
 	

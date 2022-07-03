@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +30,7 @@ public class Empresa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	@Column(name="id_empresa")
-	private int idEmpresa;
+	private Long idEmpresa;
 	
 	@NotBlank
 	@Column(name="nome_fantasia")

@@ -24,7 +24,7 @@ public class FuncionarioService {
 	}
 	
 	public Funcionario buscarPorId(Long id) {
-		Funcionario entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		Funcionario entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Nï¿½o foi encontrado registro com esse Id"));
 		return entity;
 	}
 	
@@ -34,7 +34,7 @@ public class FuncionarioService {
 	
 	public Funcionario atualizar(Funcionario funcionario) {
 		Funcionario entity = buscarPorId(funcionario.getIdFuncionario());
-		entity.setFuncionario(funcionario.getFuncionario());
+//		entity.setFuncionario(funcionario.getFuncionario());
 		entity.setCpf(funcionario.getCpf());
 		entity.setDataDeNascimento(funcionario.getDataDeNascimento());
 		entity.setEndereco(funcionario.getEndereco());

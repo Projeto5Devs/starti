@@ -30,7 +30,7 @@ public class Funcionario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotBlank
-	private int idFuncionario;
+	private Long idFuncionario;
 	
 	@NotBlank
 	@Column

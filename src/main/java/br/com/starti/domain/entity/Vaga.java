@@ -35,7 +35,7 @@ public class Vaga implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_vaga")
 	@NotBlank
-	private int id;
+	private Long id;
 	
 	@NotBlank
 	@Size(max=255)

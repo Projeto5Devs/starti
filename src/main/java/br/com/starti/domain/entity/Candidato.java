@@ -31,7 +31,7 @@ public class Candidato implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotBlank
 	@Column(name="id_candidato")
-	private int idCandidato;
+	private Long idCandidato;
 	
 	@NotBlank
 	@Column
