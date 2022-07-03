@@ -23,7 +23,7 @@ public class VagaService {
 		return repository.findAll();
 	}
 
-	public Vaga buscarPorId(Integer id) {
+	public Vaga buscarPorId(Long id) {
 		Vaga entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		return entity;
 	}

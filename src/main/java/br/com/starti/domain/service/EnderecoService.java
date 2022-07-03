@@ -23,13 +23,13 @@ public class EnderecoService {
 		return enderecoRepository.findAll();
 	}
 	
-	public Endereco buscarPorId(Integer id) {
+	public Endereco buscarPorId(Long id) {
 		Endereco entity = enderecoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Nenhum registro encontrado"));
 		return entity;
 	}
 	
-	public void deletar(Integer id) {
+	public void deletar(Long id) {
 		enderecoRepository.deleteById(id);
 	}
 	

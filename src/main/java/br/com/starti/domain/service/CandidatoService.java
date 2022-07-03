@@ -23,7 +23,7 @@ public class CandidatoService {
 		return repository.findAll();
 	}
 	
-	public Candidato buscarPorId(Integer id) {
+	public Candidato buscarPorId(Long id) {
 		Candidato entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		return entity;
 	}

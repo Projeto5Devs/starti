@@ -23,11 +23,11 @@ public class EmpresaService {
 		return empresaRepository.findAll();
 	}
 	
-	public Empresa buscarPorId(Integer id) {
+	public Empresa buscarPorId(Long id) {
 		return empresaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("O ID a empresa não pode ser encontrado."));
 	}
 	
-	public void deletar(Integer id) {
+	public void deletar(Long id) {
 		empresaRepository.deleteById(id);
 	}
 	

@@ -21,7 +21,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="funcionario")
-public class Funcionario implements Serializable {/**
+public class Funcionario implements Serializable {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;

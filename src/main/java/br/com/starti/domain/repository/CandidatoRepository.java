@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.starti.domain.entity.Candidato;
 
 @Repository 
-public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{ 
+public interface CandidatoRepository extends JpaRepository<Candidato, Long>{ 
  
 }
