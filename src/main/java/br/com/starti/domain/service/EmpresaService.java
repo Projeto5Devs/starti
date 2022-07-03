@@ -35,12 +35,12 @@ public class EmpresaService {
 		Empresa entity = buscarPorId(empresa.getIdEmpresa());
 		entity.setNomeFantasia(empresa.getNomeFantasia());
 		entity.setRazaoSocial(empresa.getRazaoSocial());
+		entity.setCnpj(empresa.getCnpj());
 		entity.setSegmento(empresa.getSegmento());
-		entity.setSegmento(empresa.getCnpj());
 		entity.setEndereco(empresa.getEndereco());
 		entity.setContato(empresa.getContato());
 		entity.setLogin(empresa.getLogin());
-		return entity;
+		return inserir(entity);
 	}
 
 }
