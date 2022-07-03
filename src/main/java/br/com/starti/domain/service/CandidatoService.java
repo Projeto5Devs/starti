@@ -28,8 +28,8 @@ public class CandidatoService {
 		return entity;
 	}
 	
-	public void deletar(Candidato candidato) {
-		repository.delete(candidato);
+	public void deletar(Long id) {
+		repository.deleteById(id);
 	}
 	
 	public Candidato atualizar(Candidato candidato) {

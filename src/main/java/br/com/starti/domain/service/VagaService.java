@@ -28,8 +28,8 @@ public class VagaService {
 		return entity;
 	}
 	
-	public void deletar(Vaga vaga) {
-		repository.delete(vaga);
+	public void deletar(Long id) {
+		repository.deleteById(id);
 	}
 	
 	public Vaga atualizar(Vaga vaga) {
