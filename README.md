@@ -21,6 +21,10 @@
 
 * https://spring.io/
 * https://www.baeldung.com/spring-pathvariable
+* https://www.baeldung.com/jpa-embedded-embeddable
+* https://www.baeldung.com/jpa-one-to-one
+* https://www.baeldung.com/hibernate-one-to-many
+* https://www.baeldung.com/jpa-many-to-many
 * https://jakarta.ee/specifications/
 * https://martinfowler.com/eaaCatalog/dataTransferObject.html
 * https://martinfowler.com/bliki/ValueObject.html
