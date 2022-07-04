@@ -6,7 +6,7 @@
 [![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://https://maven.apache.org/)
 [![Eclipse](https://badgen.net/badge/icon/eclipse?icon=eclipse&label)](https://https://eclipse.org/)
 
-<p align="center"> <img src = file:///C:/Users/LENOVO/Downloads/STARTI.png /> </p>
+<p align="center"> <img src = "https://github.com/Projeto5Devs/starti/blob/main/img/STARTI.png?raw=true" /> </p>
 
 
 <h1 align="center"> Site de Vagas para DEVs - starti - Projeto Integrador SERASA </h1>
@@ -14,7 +14,7 @@
 <h3> Diagrama de Classes: </h3>
 <img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/Class%20Diagram0%20-%20v6.jpg?raw=true"/>
 <h3> Diagrama do Banco de Dados: </h3>
-<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/diagrama_vagas_2.png?raw=true"/>
+<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/diagrama_vagas_3.png?raw=true"/>
 <hr>
 
 <h3> Referências </h3>
