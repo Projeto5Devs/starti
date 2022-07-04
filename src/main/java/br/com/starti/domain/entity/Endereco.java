@@ -61,15 +61,11 @@ public class Endereco implements Serializable {
 	private String uf;
 	
 	@OneToOne(mappedBy = "endereco")
-	private Candidato candidato;
+	@JsonIgnore
+	private PFisica pfisica;
 	
 	@OneToOne(mappedBy="endereco", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Empresa empresa;
-	
-	@OneToOne(mappedBy = "endereco")
-	private Funcionario funcionario;
 
-	
-	
 }

@@ -11,13 +11,10 @@ import lombok.Data;
 @Data
 public class ChaveCompostaInscricao implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="candidato_id_candidato")
-	Long idCandidato;
+	@Column(name="pfisica_id_pfisica")
+	Long idPFisica;
 	
 	@Column(name="vaga_id_vaga")
 	Long idVaga;

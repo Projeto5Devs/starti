@@ -1,6 +1,5 @@
 package br.com.starti.domain.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,7 +24,7 @@ public class Inscricao{
 	@ManyToOne
 	@MapsId("idCandidato")
 	@JoinColumn(name="candidato_id_candidato")
-	Candidato candidato;
+	PFisica pfisica;
 	
 	@ManyToOne
 	@MapsId("idVaga")

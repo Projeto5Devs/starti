@@ -17,6 +17,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -55,6 +57,7 @@ public class Vaga implements Serializable{
 	private String cargo;
 	
 	@ManyToOne
+	@JsonIgnore
     @JoinColumn(name="empresa_id_empresa", nullable=false)
 	private Empresa empresa;
 	
