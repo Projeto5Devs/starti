@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -44,7 +45,7 @@ public class Vaga implements Serializable{
 	@Column(name = "modalidade_vaga")
 	private String modalidade;
 	
-	@NotBlank
+	@NotNull
 	@Column(name = "prazo_vaga")
 	private Date prazo;
 	

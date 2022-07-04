@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -47,7 +48,7 @@ public class Candidato implements Serializable{
 	@Size(max=14)
 	private String cpf;
 	
-	@NotBlank
+	@NotNull
 	@Column(name="data_de_nascimento")
 	private Date dataDeNascimento;
 	
