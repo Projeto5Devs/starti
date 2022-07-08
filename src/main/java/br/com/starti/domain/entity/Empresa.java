@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -63,6 +65,7 @@ public class Empresa implements Serializable{
 	private Endereco endereco;
 	
 	@OneToMany(mappedBy="empresa")
+	@JsonIgnore
 	private Set<Vaga> vagas;
 
 

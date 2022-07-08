@@ -40,6 +40,10 @@ public class Endereco implements Serializable {
 	@Size(max=10)
 	private String numero;
 	
+	@Column
+	@Size(max=10)
+	private String complemento;
+	
 	@NotBlank
 	@Column
 	@Size(max=50)

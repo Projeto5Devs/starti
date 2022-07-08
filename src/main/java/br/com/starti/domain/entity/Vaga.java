@@ -13,8 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,7 +40,7 @@ public class Vaga implements Serializable{
 	@Column(name = "descricao_vaga")
 	private String descricao;
 	
-	@NotBlank
+	@Positive
 	@Column(name = "salario_vaga")
 	private double salario;
 	
@@ -48,6 +50,7 @@ public class Vaga implements Serializable{
 	private String modalidade;
 	
 	@NotNull
+	@FutureOrPresent 
 	@Column(name = "prazo_vaga")
 	private Date prazo;
 	
@@ -57,7 +60,6 @@ public class Vaga implements Serializable{
 	private String cargo;
 	
 	@ManyToOne
-	@JsonIgnore
     @JoinColumn(name="empresa_id_empresa", nullable=false)
 	private Empresa empresa;
 	

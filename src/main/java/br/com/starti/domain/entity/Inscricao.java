@@ -22,8 +22,8 @@ public class Inscricao{
 	ChaveCompostaInscricao idInscricao;
 	
 	@ManyToOne
-	@MapsId("idCandidato")
-	@JoinColumn(name="candidato_id_candidato")
+	@MapsId("idPfisica")
+	@JoinColumn(name="pfisica_id_pfisica")
 	PFisica pfisica;
 	
 	@ManyToOne
