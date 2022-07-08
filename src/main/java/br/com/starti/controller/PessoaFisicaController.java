@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.entity.PessoaFisica;
-import br.com.starti.domain.service.PessoaFisicaService;
+import br.com.starti.service.PessoaFisicaService;
 
 @RestController
 @RequestMapping("/pessoafisica")

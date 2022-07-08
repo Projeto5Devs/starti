@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.entity.Endereco;
-import br.com.starti.domain.service.EnderecoService;
+import br.com.starti.service.EnderecoService;
 
 
 

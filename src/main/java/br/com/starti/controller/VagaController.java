@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.entity.Vaga;
-import br.com.starti.domain.service.VagaService;
+import br.com.starti.service.VagaService;
 
 @RestController
 @RequestMapping("/vaga")

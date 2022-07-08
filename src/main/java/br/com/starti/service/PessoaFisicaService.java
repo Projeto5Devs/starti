@@ -1,4 +1,4 @@
-package br.com.starti.domain.service;
+package br.com.starti.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.starti.domain.entity.PessoaFisica;
-import br.com.starti.domain.repository.PessoaFisicaRepository;
 import br.com.starti.exception.ResourceNotFoundException;
+import br.com.starti.repository.PessoaFisicaRepository;
 
 @Service
 public class PessoaFisicaService {

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import br.com.starti.domain.entity.Empresa;
-import br.com.starti.domain.service.EmpresaService;
+import br.com.starti.service.EmpresaService;
 
 
 @RestController
