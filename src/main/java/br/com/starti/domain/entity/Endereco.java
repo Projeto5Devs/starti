@@ -41,7 +41,7 @@ public class Endereco implements Serializable {
 	private String numero;
 	
 	@Column
-	@Size(max=10)
+	@Size(max=30)
 	private String complemento;
 	
 	@NotBlank
@@ -66,7 +66,7 @@ public class Endereco implements Serializable {
 	
 	@OneToOne(mappedBy = "endereco")
 	@JsonIgnore
-	private PFisica pfisica;
+	private PessoaFisica pessoaFisica;
 	
 	@OneToOne(mappedBy="endereco", cascade = CascadeType.ALL)
 	@JsonIgnore

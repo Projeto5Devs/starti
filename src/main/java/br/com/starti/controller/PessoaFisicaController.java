@@ -17,38 +17,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.starti.domain.entity.PFisica;
-import br.com.starti.domain.service.PFisicaService;
+import br.com.starti.domain.entity.PessoaFisica;
+import br.com.starti.domain.service.PessoaFisicaService;
 
 @RestController
-@RequestMapping("/pfisica")
-public class PFisicaController {
+@RequestMapping("/pessoafisica")
+public class PessoaFisicaController {
 
 	@Autowired
-	PFisicaService service;
+	PessoaFisicaService service;
 	
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public List<PFisica>findAll(){
+	public List<PessoaFisica>findAll(){
 		return service.buscarTodos();
 	}
 	
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public PFisica findById(@PathVariable("id")Long id) {
+	public PessoaFisica findById(@PathVariable("id")Long id) {
 		return service.buscarPorId(id);
 	}
 	
 	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public PFisica create(@Valid @RequestBody PFisica pfisica) {
-		return service.inserir(pfisica);
+	public PessoaFisica create(@Valid @RequestBody PessoaFisica pessoaFisica) {
+		return service.inserir(pessoaFisica);
 	}
 
 	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public PFisica update(@Valid @RequestBody PFisica pfisica) {
-		return service.atualizar(pfisica);	
+	public PessoaFisica update(@Valid @RequestBody PessoaFisica pessoaFisica) {
+		return service.atualizar(pessoaFisica);	
 	}
 	
 	@DeleteMapping(value="/{id}")

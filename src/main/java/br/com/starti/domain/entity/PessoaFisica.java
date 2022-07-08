@@ -24,15 +24,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="pfisica")
-public class PFisica implements Serializable{
+@Table(name="pessoa_fisica")
+public class PessoaFisica implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id_pfisica")
-	private Long idPFisica;
+	@Column(name="id_pessoa_fisica")
+	private Long idPessoaFisica;
 	
 	@NotBlank
 	@Column
@@ -64,7 +64,7 @@ public class PFisica implements Serializable{
 	@JoinColumn(name="endereco_id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 	
-	@OneToMany(mappedBy = "pfisica")
+	@OneToMany(mappedBy = "pessoafisica")
     Set<Inscricao> inscricoes;
 //	
 //	@JoinColumn(name="id_permissao", table="permissao")

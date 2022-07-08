@@ -14,7 +14,7 @@ public class ChaveCompostaInscricao implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="pfisica_id_pfisica")
-	Long idPFisica;
+	Long idPessoaFisica;
 	
 	@Column(name="vaga_id_vaga")
 	Long idVaga;
