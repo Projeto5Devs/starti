@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
 import br.com.starti.domain.entity.Vaga;
-import br.com.starti.domain.vo.VagaVO;
+import br.com.starti.domain.vo.v1.VagaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.VagaRepository;
 
