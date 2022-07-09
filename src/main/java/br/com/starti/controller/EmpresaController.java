@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import br.com.starti.domain.entity.Empresa;
+import br.com.starti.domain.vo.EmpresaVO;
 import br.com.starti.service.EmpresaService;
 
 
@@ -32,25 +32,25 @@ public class EmpresaController {
 	
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public List<Empresa>findAll(){
+	public List<EmpresaVO>findAll(){
 		return empresaService.buscarTodos();
 	}
 	
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Empresa findById(@PathVariable("id")Long id) {
+	public EmpresaVO findById(@PathVariable("id")Long id) {
 		return empresaService.buscarPorId(id);
 	}
 	
 	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public Empresa create(@Valid @RequestBody Empresa empresa) {
+	public EmpresaVO create(@Valid @RequestBody EmpresaVO empresa) {
 		return empresaService.inserir(empresa);
 	}
 
 	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Empresa update(@Valid @RequestBody Empresa empresa) {
+	public EmpresaVO update(@Valid @RequestBody EmpresaVO empresa) {
 		return empresaService.atualizar(empresa);	
 	}
 	
