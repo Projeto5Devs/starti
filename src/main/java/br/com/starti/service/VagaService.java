@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.starti.adapter.DozerConverter;
+import br.com.starti.domain.entity.Vaga;
+import br.com.starti.domain.vo.VagaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.VagaRepository;
-import br.com.starti.domain.entity.Vaga;
 
 @Service
 public class VagaService {
@@ -15,25 +17,32 @@ public class VagaService {
 	@Autowired
 	VagaRepository repository;
 	
-	public Vaga inserir(Vaga vaga){
-		return repository.save(vaga);
+	public VagaVO inserir(VagaVO vaga){
+		var entity = DozerConverter.parseObject(vaga, Vaga.class);
+		var vo = DozerConverter.parseObject(repository.save(entity), VagaVO.class);
+		return vo;
 	}
 	
-	public List<Vaga> buscarTodos(){
-		return repository.findAll();
+	public List<VagaVO> buscarTodos(){
+		return DozerConverter.parseListObject(repository.findAll(), VagaVO.class);
 	}
 
-	public Vaga buscarPorId(Long id) {
-		Vaga entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
-		return entity;
+	public VagaVO buscarPorId(Long id) {
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		return DozerConverter.parseObject(entity, VagaVO.class);
 	}
 	
 	public void deletar(Long id) {
-		repository.deleteById(id);
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		repository.delete(entity);
 	}
 	
-	public Vaga atualizar(Vaga vaga) {
-		Vaga entity = buscarPorId(vaga.getId());
+	public VagaVO atualizar(VagaVO vaga) {
+		var entity = repository.findById(vaga.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		
 		entity.setDescricao(vaga.getDescricao());
 		entity.setSalario(vaga.getSalario());
 		entity.setModalidade(vaga.getModalidade());
@@ -41,6 +50,7 @@ public class VagaService {
 		entity.setCargo(vaga.getCargo());
 		entity.setEmpresa(vaga.getEmpresa());
 		
-		return inserir(entity);
+		var vo = DozerConverter.parseObject(repository.save(entity), VagaVO.class);
+		return vo;
 	}
 }
