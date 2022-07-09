@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
 import br.com.starti.domain.entity.PessoaFisica;
-import br.com.starti.domain.vo.PessoaFisicaVO;
+import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.PessoaFisicaRepository;
 

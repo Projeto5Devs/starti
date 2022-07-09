@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
 import br.com.starti.domain.entity.Empresa;
-import br.com.starti.domain.vo.EmpresaVO;
+import br.com.starti.domain.vo.v1.EmpresaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.EmpresaRepository;
 

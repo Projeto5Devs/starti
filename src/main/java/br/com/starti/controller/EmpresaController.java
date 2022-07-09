@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import br.com.starti.domain.vo.EmpresaVO;
+import br.com.starti.domain.vo.v1.EmpresaVO;
 import br.com.starti.service.EmpresaService;
 
 
 @RestController
-@RequestMapping("/empresas")
+@RequestMapping("/empresas/v1")
 public class EmpresaController {
 
 	@Autowired

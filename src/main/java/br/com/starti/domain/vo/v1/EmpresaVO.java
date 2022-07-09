@@ -1,4 +1,4 @@
-package br.com.starti.domain.vo;
+package br.com.starti.domain.vo.v1;
 
 import java.io.Serializable;
 

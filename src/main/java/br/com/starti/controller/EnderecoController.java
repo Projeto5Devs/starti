@@ -23,7 +23,7 @@ import br.com.starti.service.EnderecoService;
 
 
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/endereco/v1")
 public class EnderecoController {
 
 		@Autowired
