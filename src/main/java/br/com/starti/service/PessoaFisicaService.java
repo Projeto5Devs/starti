@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.starti.adapter.DozerConverter;
 import br.com.starti.domain.entity.PessoaFisica;
+import br.com.starti.domain.vo.PessoaFisicaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.PessoaFisicaRepository;
 
@@ -15,25 +17,32 @@ public class PessoaFisicaService {
 	@Autowired
 	PessoaFisicaRepository repository;
 	
-	public PessoaFisica inserir(PessoaFisica pessoaFisica) {
-		return repository.save(pessoaFisica);
+	public PessoaFisicaVO inserir(PessoaFisicaVO pessoaFisica) {
+		var entity = DozerConverter.parseObject(pessoaFisica, PessoaFisica.class);
+		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
+		return vo;
 	}
 	
-	public List<PessoaFisica> buscarTodos() {
-		return repository.findAll();
+	public List<PessoaFisicaVO> buscarTodos() {
+		return DozerConverter.parseListObject(repository.findAll(), PessoaFisicaVO.class);
 	}
 	
-	public PessoaFisica buscarPorId(Long id) {
-		PessoaFisica entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
-		return entity;
+	public PessoaFisicaVO buscarPorId(Long id) {
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		return DozerConverter.parseObject(entity, PessoaFisicaVO.class);
 	}
 	
 	public void deletar(Long id) {
-		repository.deleteById(id);
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		repository.delete(entity);
 	}
 	
-	public PessoaFisica atualizar(PessoaFisica pessoaFisica) {
-		PessoaFisica entity = buscarPorId(pessoaFisica.getIdPessoaFisica());
+	public PessoaFisicaVO atualizar(PessoaFisicaVO pessoaFisica) {
+		var entity = repository.findById(pessoaFisica.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
+		
 		entity.setContato(pessoaFisica.getContato());
 		entity.setCpf(pessoaFisica.getCpf());
 		entity.setDataDeNascimento(pessoaFisica.getDataDeNascimento());
@@ -42,6 +51,7 @@ public class PessoaFisicaService {
 		entity.setSobrenome(pessoaFisica.getSobrenome());
 		entity.setLogin(pessoaFisica.getLogin());
 		
-		return inserir(entity);
+		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
+		return vo;
 	}
 }
