@@ -49,7 +49,6 @@ public class PessoaFisicaService {
 		entity.setEndereco(pessoaFisica.getEndereco());
 		entity.setNome(pessoaFisica.getNome());
 		entity.setSobrenome(pessoaFisica.getSobrenome());
-		entity.setLogin(pessoaFisica.getLogin());
 		
 		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
 		return vo;
