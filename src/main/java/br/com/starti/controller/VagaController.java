@@ -2,6 +2,8 @@ package br.com.starti.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.starti.domain.entity.Vaga;
+import br.com.starti.domain.vo.VagaVO;
 import br.com.starti.service.VagaService;
 
 @RestController
@@ -27,25 +29,25 @@ public class VagaController {
 	
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public List<Vaga>findAll(){
+	public List<VagaVO>findAll(){
 		return service.buscarTodos();
 	}
 	
 	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Vaga findById(@PathVariable("id") Long id) {
+	public VagaVO findById(@PathVariable("id") Long id) {
 		return service.buscarPorId(id);
 	}
 	
 	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public Vaga create(@RequestBody Vaga vaga) {
+	public VagaVO create(@Valid @RequestBody VagaVO vaga) {
 		return service.inserir(vaga);
 	}
 	
 	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Vaga update(@RequestBody Vaga vaga) {
+	public VagaVO update(@Valid @RequestBody VagaVO vaga) {
 		return service.atualizar(vaga);
 	}
 	
