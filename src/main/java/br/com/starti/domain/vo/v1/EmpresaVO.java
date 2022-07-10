@@ -45,7 +45,9 @@ public class EmpresaVO extends RepresentationModel<EmpresaVO> implements Seriali
 				&& Objects.equals(nomeFantasia, other.nomeFantasia) && Objects.equals(razaoSocial, other.razaoSocial)
 				&& Objects.equals(segmento, other.segmento);
 	}
-	
-	
+
+	public Long getKey() {
+		return null;
+	}
 
 }

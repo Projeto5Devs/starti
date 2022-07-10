@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.entity.Endereco;
+import br.com.starti.domain.vo.v1.EnderecoVO;
 import br.com.starti.service.EnderecoService;
 
 
@@ -42,13 +43,13 @@ public class EnderecoController {
 		
 		@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 		@ResponseStatus(HttpStatus.CREATED)
-		public Endereco create(@Valid @RequestBody Endereco endereco) {
+		public EnderecoVO create(@Valid @RequestBody EnderecoVO endereco) {
 			return enderecoService.inserir(endereco);
 		}
 	
 		@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 		@ResponseStatus(HttpStatus.OK)
-		public Endereco update(@Valid @RequestBody Endereco endereco) {
+		public EnderecoVO update(@Valid @RequestBody EnderecoVO endereco) {
 			return enderecoService.atualizar(endereco);	
 		}
 		

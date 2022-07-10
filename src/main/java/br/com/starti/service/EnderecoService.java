@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.starti.adapter.DozerConverter;
+import br.com.starti.domain.entity.Empresa;
 import br.com.starti.domain.entity.Endereco;
+import br.com.starti.domain.vo.v1.EmpresaVO;
+import br.com.starti.domain.vo.v1.EnderecoVO;
+import br.com.starti.domain.vo.v1.VagaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.EnderecoRepository;
 
@@ -15,8 +20,10 @@ public class EnderecoService {
 	@Autowired
 	EnderecoRepository enderecoRepository;
 	
-	public Endereco inserir(Endereco endereco) {
-		return enderecoRepository.save(endereco);
+	public EnderecoVO inserir(EnderecoVO endereco) {
+		var entity = DozerConverter.parseObject(endereco, Endereco.class);
+		var vo = DozerConverter.parseObject(enderecoRepository.save(entity), EnderecoVO.class);
+		return vo;
 	}
 	
 	public List<Endereco> buscarTodos(){
@@ -33,16 +40,20 @@ public class EnderecoService {
 		enderecoRepository.deleteById(id);
 	}
 	
-	public Endereco atualizar(Endereco endereco) {
-		Endereco entity = buscarPorId(endereco.getIdEndereco());
+
+	public EnderecoVO atualizar(EnderecoVO endereco) {
+		var entity = repository.findById(endereco.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado endereço com esse Id"));
+		
 		entity.setRua(endereco.getRua());
 		entity.setNumero(endereco.getNumero());
 		entity.setBairro(endereco.getBairro());
 		entity.setCidade(endereco.getCidade());
 		entity.setCep(endereco.getCep());
 		entity.setUf(endereco.getUf());
-	
-		return inserir(entity);
+		
+		var vo = DozerConverter.parseObject(repository.save(entity), EnderecoVO.class);
+		return (EnderecoVO) vo;
 	}
-	
+
 }
