@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,25 +28,25 @@ public class EnderecoController {
 		@Autowired
 		EnderecoService enderecoService;
 	
-		@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+		@GetMapping(produces={"application/json", "application/xml"})
 		@ResponseStatus(HttpStatus.OK)
 		public List<Endereco>findAll(){
 			return enderecoService.buscarTodos();
 		}
 		
-		@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+		@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
 		@ResponseStatus(HttpStatus.OK)
 		public Endereco findById(@PathVariable("id")Long id) {
 			return enderecoService.buscarPorId(id);
 		}
 		
-		@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+		@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 		@ResponseStatus(HttpStatus.CREATED)
 		public Endereco create(@Valid @RequestBody Endereco endereco) {
 			return enderecoService.inserir(endereco);
 		}
 	
-		@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+		@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 		@ResponseStatus(HttpStatus.OK)
 		public Endereco update(@Valid @RequestBody Endereco endereco) {
 			return enderecoService.atualizar(endereco);	

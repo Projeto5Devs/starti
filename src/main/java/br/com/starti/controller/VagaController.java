@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,25 +26,25 @@ public class VagaController {
 	@Autowired
 	VagaService service;
 	
-	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public List<VagaVO>findAll(){
 		return service.buscarTodos();
 	}
 	
-	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public VagaVO findById(@PathVariable("id") Long id) {
 		return service.buscarPorId(id);
 	}
 	
-	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.CREATED)
 	public VagaVO create(@Valid @RequestBody VagaVO vaga) {
 		return service.inserir(vaga);
 	}
 	
-	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public VagaVO update(@Valid @RequestBody VagaVO vaga) {
 		return service.atualizar(vaga);
