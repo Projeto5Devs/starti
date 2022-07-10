@@ -38,7 +38,7 @@ public class EmpresaService {
 	}
 	
 	public EmpresaVO atualizar(EmpresaVO empresa) {
-		var entity =  empresaRepository.findById(empresa.getIdEmpresa())
+		var entity =  empresaRepository.findById(empresa.getKey())
 				.orElseThrow(()-> new ResourceNotFoundException("O ID a empresa não pode ser encontrado."));
 		
 		entity.setNomeFantasia(empresa.getNomeFantasia());
