@@ -40,7 +40,7 @@ public class PessoaFisicaService {
 	}
 	
 	public PessoaFisicaVO atualizar(PessoaFisicaVO pessoaFisica) {
-		var entity = repository.findById(pessoaFisica.getId())
+		var entity = repository.findById(pessoaFisica.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		
 		entity.setContato(pessoaFisica.getContato());

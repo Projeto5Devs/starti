@@ -40,7 +40,7 @@ public class VagaService {
 	}
 	
 	public VagaVO atualizar(VagaVO vaga) {
-		var entity = repository.findById(vaga.getId())
+		var entity = repository.findById(vaga.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		
 		entity.setDescricao(vaga.getDescricao());

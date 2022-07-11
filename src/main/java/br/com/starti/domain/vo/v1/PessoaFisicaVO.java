@@ -17,7 +17,7 @@ public class PessoaFisicaVO extends RepresentationModel<PessoaFisicaVO> implemen
 	private static final long serialVersionUID = 1L;
 
 	@Mapping("idPessoaFisica")
-	private Long id;
+	private Long key;
 	private String nome;
 	private String sobrenome;
 	private String cpf;

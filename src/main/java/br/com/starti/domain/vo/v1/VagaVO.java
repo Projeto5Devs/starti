@@ -16,7 +16,7 @@ public class VagaVO extends RepresentationModel<VagaVO> implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Mapping("id")
-	private Long id;
+	private Long key;
 	private String descricao;
 	private double salario;
 	private String modalidade;
