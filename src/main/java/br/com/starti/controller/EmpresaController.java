@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class EmpresaController {
 	@Autowired
 	EmpresaService empresaService;
 	
+
 	@GetMapping(produces={"application/json", "application/xml"})
 	@Operation(summary="Listar todas as empresas")
 	@ResponseStatus(HttpStatus.OK)
@@ -41,6 +43,7 @@ public class EmpresaController {
 		return empresasVO;
 	}
 	
+//	@CrossOrigin({"localhost:8080"})
 	@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
 	@Operation(summary="Procurar empresa por ID")
 	@ResponseStatus(HttpStatus.OK)
@@ -50,6 +53,7 @@ public class EmpresaController {
 		return empresaVO;
 	}
 	
+
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@Operation(summary="Cadastrar nova empresa")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -58,6 +62,7 @@ public class EmpresaController {
 		empresaVO.add(linkTo(methodOn(EmpresaController.class).findById(empresaVO.getKey())).withSelfRel());
 		return empresaVO;
 	}
+
 
 	@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@Operation(summary="Atualizar dados da empresa")
