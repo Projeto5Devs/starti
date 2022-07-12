@@ -32,7 +32,7 @@ public class EnderecoVO extends RepresentationModel<EnderecoVO> implements Seria
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(rua, numero, complemento, bairro, cep, cidade, uf);
+		return Objects.hash(key, rua, numero, complemento, bairro, cep, cidade, uf);
 	}
 	
 	@Override
@@ -45,6 +45,7 @@ public class EnderecoVO extends RepresentationModel<EnderecoVO> implements Seria
 			return false;
 		EnderecoVO other = (EnderecoVO) obj;
 		return Objects.equals(rua, other.rua) 
+				&& Objects.equals(key, other.key)
 				&& Objects.equals(numero, other.numero)
 				&& Objects.equals(complemento, other.complemento) 
 				&& Objects.equals(bairro, other.bairro)
@@ -52,7 +53,7 @@ public class EnderecoVO extends RepresentationModel<EnderecoVO> implements Seria
 				&& Objects.equals(cidade, other.cidade)
 				&& Objects.equals(uf, other.uf);
 	}
-
+	
 	public Long getKey() {
 		return null;
 	}
