@@ -42,7 +42,7 @@ public class EnderecoService {
 	
 
 	public EnderecoVO atualizar(EnderecoVO endereco) {
-		var entity = repository.findById(endereco.getId())
+		var entity = enderecoRepository.findById(endereco.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado endereço com esse Id"));
 		
 		entity.setRua(endereco.getRua());
@@ -52,7 +52,7 @@ public class EnderecoService {
 		entity.setCep(endereco.getCep());
 		entity.setUf(endereco.getUf());
 		
-		var vo = DozerConverter.parseObject(repository.save(entity), EnderecoVO.class);
+		var vo = DozerConverter.parseObject(enderecoRepository.save(entity), EnderecoVO.class);
 		return (EnderecoVO) vo;
 	}
 

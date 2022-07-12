@@ -20,7 +20,8 @@ public class EnderecoVO extends RepresentationModel<EnderecoVO> implements Seria
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Mapping("id_Endereco")
+	@Mapping("idEndereco")
+	private Long key;
 	private String rua;
 	private String numero;
 	private String complemento;
