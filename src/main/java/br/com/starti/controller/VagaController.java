@@ -1,5 +1,8 @@
 package br.com.starti.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,7 +23,7 @@ import br.com.starti.domain.vo.v1.VagaVO;
 import br.com.starti.service.VagaService;
 
 @RestController
-@RequestMapping("/vaga")
+@RequestMapping("/vaga/v1")
 public class VagaController {
 	
 	@Autowired
@@ -29,25 +32,33 @@ public class VagaController {
 	@GetMapping(produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public List<VagaVO>findAll(){
-		return service.buscarTodos();
+		List<VagaVO> vagaVO = service.buscarTodos();
+		vagaVO.stream().forEach(p -> p.add(linkTo(methodOn(VagaController.class).findById(p.getKey())).withSelfRel()));
+		return vagaVO;
 	}
 	
 	@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public VagaVO findById(@PathVariable("id") Long id) {
-		return service.buscarPorId(id);
+		VagaVO vagaVO = service.buscarPorId(id);
+		vagaVO.add(linkTo(methodOn(VagaController.class).findById(id)).withSelfRel());
+		return vagaVO;
 	}
 	
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.CREATED)
 	public VagaVO create(@Valid @RequestBody VagaVO vaga) {
-		return service.inserir(vaga);
+		VagaVO vagaVO = service.inserir(vaga);
+		vagaVO.add(linkTo(methodOn(VagaController.class).findById(vagaVO.getKey())).withSelfRel());
+		return vagaVO;
 	}
 	
 	@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public VagaVO update(@Valid @RequestBody VagaVO vaga) {
-		return service.atualizar(vaga);
+		VagaVO vagaVO = service.atualizar(vaga);	
+		vagaVO.add(linkTo(methodOn(VagaController.class).findById(vagaVO.getKey())).withSelfRel());
+		return vagaVO;
 	}
 	
 	@DeleteMapping(value="/{id}")

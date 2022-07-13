@@ -1,5 +1,8 @@
 package br.com.starti.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,25 +32,33 @@ public class PessoaFisicaController {
 	@GetMapping(produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public List<PessoaFisicaVO>findAll(){
-		return service.buscarTodos();
+		List<PessoaFisicaVO> pessoaFisicaVO = service.buscarTodos();
+		pessoaFisicaVO.stream().forEach(p -> p.add(linkTo(methodOn(PessoaFisicaController.class).findById(p.getKey())).withSelfRel()));
+		return pessoaFisicaVO;
 	}
 	
 	@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public PessoaFisicaVO findById(@PathVariable("id")Long id) {
-		return service.buscarPorId(id);
+		PessoaFisicaVO pessoaFisicaVO = service.buscarPorId(id);
+		pessoaFisicaVO.add(linkTo(methodOn(PessoaFisicaController.class).findById(id)).withSelfRel());
+		return pessoaFisicaVO;
 	}
 	
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.CREATED)
 	public PessoaFisicaVO create(@Valid @RequestBody PessoaFisicaVO pessoaFisica) {
-		return service.inserir(pessoaFisica);
+		PessoaFisicaVO pessoaFisicaVO = service.inserir(pessoaFisica);
+		pessoaFisicaVO.add(linkTo(methodOn(PessoaFisicaController.class).findById(pessoaFisicaVO.getKey())).withSelfRel());
+		return pessoaFisicaVO;
 	}
 
 	@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@ResponseStatus(HttpStatus.OK)
 	public PessoaFisicaVO update(@Valid @RequestBody PessoaFisicaVO pessoaFisica) {
-		return service.atualizar(pessoaFisica);	
+		PessoaFisicaVO pessoaFisicaVO = service.atualizar(pessoaFisica);	
+		pessoaFisicaVO.add(linkTo(methodOn(PessoaFisicaController.class).findById(pessoaFisicaVO.getKey())).withSelfRel());
+		return pessoaFisicaVO;
 	}
 	
 	@DeleteMapping(value="/{id}")
