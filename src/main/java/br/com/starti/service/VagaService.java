@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
+import br.com.starti.domain.entity.Empresa;
 import br.com.starti.domain.entity.Vaga;
 import br.com.starti.domain.vo.v1.VagaVO;
 import br.com.starti.exception.ResourceNotFoundException;
@@ -48,7 +49,8 @@ public class VagaService {
 		entity.setModalidade(vaga.getModalidade());
 		entity.setPrazo(vaga.getPrazo());
 		entity.setCargo(vaga.getCargo());
-		entity.setEmpresa(vaga.getEmpresa());
+		Empresa empresa = DozerConverter.parseObject(vaga.getEmpresa(), Empresa.class);
+		entity.setEmpresa(empresa); 
 		
 		var vo = DozerConverter.parseObject(repository.save(entity), VagaVO.class);
 		return vo;

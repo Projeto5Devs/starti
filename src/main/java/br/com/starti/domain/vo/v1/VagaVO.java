@@ -7,10 +7,12 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
 
-import br.com.starti.domain.entity.Empresa;
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class VagaVO extends RepresentationModel<VagaVO> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,6 @@ public class VagaVO extends RepresentationModel<VagaVO> implements Serializable{
 	private String modalidade;
 	private Date prazo;
 	private String cargo;
-	private Empresa empresa;
+	private EmpresaVO empresa;
 
 }

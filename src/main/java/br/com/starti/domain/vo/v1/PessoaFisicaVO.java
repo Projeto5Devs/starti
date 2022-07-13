@@ -9,9 +9,12 @@ import com.github.dozermapper.core.Mapping;
 
 import br.com.starti.domain.entity.Contato;
 import br.com.starti.domain.entity.Endereco;
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PessoaFisicaVO extends RepresentationModel<PessoaFisicaVO> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
