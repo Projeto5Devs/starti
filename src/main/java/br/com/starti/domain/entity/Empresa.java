@@ -30,7 +30,6 @@ public class Empresa implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	@Column(name="id_empresa")
 	private Long idEmpresa;
 	
@@ -57,8 +56,9 @@ public class Empresa implements Serializable{
 	@Embedded
 	private Contato contato;
 	
-	@Embedded
-	private Login login;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="usuario_id_usuario", referencedColumnName = "id_usuario")
+	private Usuario userId;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="endereco_id_endereco", referencedColumnName = "id_endereco")
