@@ -19,8 +19,8 @@ public class Contato {
 	
 	@NotBlank
 	@Email
-	@Column
 	@Size(max=80)
+	@Column(unique= true)
 	private String email;
 	
 	@Size(max=150)
