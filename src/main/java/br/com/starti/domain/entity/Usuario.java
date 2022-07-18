@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table(name="usuario")
 public class Usuario implements UserDetails, Serializable {
@@ -66,6 +67,63 @@ public class Usuario implements UserDetails, Serializable {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.permissoes;
 	}
+	
+	
+
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+
+
+	public void setAccountNonExpired(Boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+
+
+	public void setAccountNonLocked(Boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+
+
+	public void setCredentialNonExpired(Boolean credentialNonExpired) {
+		this.credentialNonExpired = credentialNonExpired;
+	}
+
+
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+
+	
+
+	public LocalDate getUltimoLogin() {
+		return ultimoLogin;
+	}
+
+
+
+	public void setUltimoLogin(LocalDate ultimoLogin) {
+		this.ultimoLogin = ultimoLogin;
+	}
+
+
 
 	@Override
 	public String getPassword() {
@@ -106,5 +164,32 @@ public class Usuario implements UserDetails, Serializable {
 		return roles;
 
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountNonExpired, accountNonLocked, credentialNonExpired, empresa, enabled, idUsuario,
+				password, permissoes, pessoaFisica, ultimoLogin, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(accountNonExpired, other.accountNonExpired)
+				&& Objects.equals(accountNonLocked, other.accountNonLocked)
+				&& Objects.equals(credentialNonExpired, other.credentialNonExpired)
+				&& Objects.equals(empresa, other.empresa) && Objects.equals(enabled, other.enabled)
+				&& Objects.equals(idUsuario, other.idUsuario) && Objects.equals(password, other.password)
+				&& Objects.equals(permissoes, other.permissoes) && Objects.equals(pessoaFisica, other.pessoaFisica)
+				&& Objects.equals(ultimoLogin, other.ultimoLogin) && Objects.equals(username, other.username);
+	}
+	
+	
+	
 
 }
