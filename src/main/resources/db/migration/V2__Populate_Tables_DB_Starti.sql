@@ -1,4 +1,4 @@
-INSERT INTO `db_starti`.`usuario` (`id_usuario`, `username`) VALUES ('1', 'user_1'),('2', 'user_2'),('3', 'user_3'), ('4', 'user_4');
+INSERT INTO `db_starti`.`usuario`  VALUES ('1', b'1', b'1', b'1', b'1', '$2a$10$tftrUNaLfRCsILylGbG5kefZGrFLGcdL2FQU3FN47knSXf04z7ffO', NULL, 'user_1'),('2', b'1', b'1', b'1', b'1', '$2a$10$tftrUNaLfRCsILylGbG5kefZGrFLGcdL2FQU3FN47knSXf04z7ffO', NULL, 'user_2'),('3', b'1', b'1', b'1', b'1', '$2a$10$tftrUNaLfRCsILylGbG5kefZGrFLGcdL2FQU3FN47knSXf04z7ffO',  NULL, 'user_3'), ('4', b'1', b'1', b'1', b'1', '$2a$10$tftrUNaLfRCsILylGbG5kefZGrFLGcdL2FQU3FN47knSXf04z7ffO',  NULL, 'user_4');
 
 INSERT INTO endereco VALUES (1,'Jardins','87564-000','São Paulo','SALA 215','125','Avenida Brasil','SP'),(2,'Pq.das Grevileas','87025-000','Maringá','sobreloja','2012','Av.Kakogawa','PR');
 INSERT INTO empresa VALUES (1,'XX.XXX.XXX/0001-XX','neoway@neoway.com','3233-6976','neoway.com','123456',NULL,'Neoway','Neoway SA.','tecnologia',1,1),(2,'XX.XXX.XXX/0002-XX','nubank@nubank.com','9999-9999','nubank.com','123789',NULL,'Nubank','Nubank SA.','tecnologia',2,2);

@@ -13,7 +13,7 @@ public class CredenciaisContaVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String username;
-	private String senha;
+	private String password;
 	
 	
 	
@@ -23,15 +23,15 @@ public class CredenciaisContaVO implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(senha, username);
+		return Objects.hash(password, username);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -42,7 +42,7 @@ public class CredenciaisContaVO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CredenciaisContaVO other = (CredenciaisContaVO) obj;
-		return Objects.equals(senha, other.senha) && Objects.equals(username, other.username);
+		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
 
 

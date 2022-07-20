@@ -25,11 +25,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class JwtProvider {
 
-	@Value("${security.jwt.token.secret-key:starti_palavra_secreta}")
-	private String secretKey = "starti_palavra_secreta";
+	@Value("${starti.jwt.token.secret-key}")
+	private String secretKey;
 	
-	@Value("${security.jwt.token.expire-length:3600000}")
-	private long validate = 3600000; //1 hora
+	@Value("${starti.jwt.token.expire-length}")
+	private long validate; 
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -39,6 +39,7 @@ public class JwtProvider {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 	
+	//Irá gerar o Token---------------------------------------------------
 	public String createToken(String username, List<String>roles) {
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("roles", roles);
@@ -51,6 +52,7 @@ public class JwtProvider {
 				.setExpiration(tempoValidadeToken)
 				.signWith(SignatureAlgorithm.HS256, secretKey).compact();
 	}
+	//------------------------------------------------------------------//
 	
 	public Authentication getAuthentication(String token) {
 		UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));

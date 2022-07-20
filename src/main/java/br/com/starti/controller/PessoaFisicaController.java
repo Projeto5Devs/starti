@@ -23,7 +23,7 @@ import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.service.PessoaFisicaService;
 
 @RestController
-@RequestMapping("api/pessoafisica/v1")
+@RequestMapping("/pessoafisica/v1")
 public class PessoaFisicaController {
 
 	@Autowired

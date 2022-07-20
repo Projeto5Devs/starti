@@ -25,7 +25,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/auth")
 public class AuthController {
 	
-	
+	//A injeção de dependencia não é feita de forma automática. 
+	//Por isso foi criado dentro do Spring Config o método authenticationManager
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
@@ -36,10 +37,10 @@ public class AuthController {
 	JwtProvider jwtProvider;
 	
 	@PostMapping(value="/signin", produces = {"application/json", "application/xml" }, consumes ={"application/json", "application/xml" })
-	public ResponseEntity signin(@RequestBody CredenciaisContaVO cred) {
+	public ResponseEntity<?> signin(@RequestBody CredenciaisContaVO cred) {
 		try {
 			var username = cred.getUsername();
-			var password = cred.getSenha();
+			var password = cred.getPassword();
 			
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			
@@ -53,12 +54,13 @@ public class AuthController {
 				throw new UsernameNotFoundException("Usuário" + username + " não localizado");
 				
 			}
-			
+
 			Map<Object, Object> model = new HashMap<>();
 			model.put("username", username);
 			model.put("token", token);
 			
 			return ResponseEntity.ok(model);
+			
 		}catch(AuthenticationException e) {
 			throw new BadCredentialsException("Usuário ou senha inválidos");
 		}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.starti.repository.UsuarioRepository;
 
 @Service
+//Classe para Autenticação do Usuário
 public class UsuarioService implements UserDetailsService {
 
 
@@ -21,7 +22,7 @@ public class UsuarioService implements UserDetailsService {
 		if (user != null) {
 			return user;
 		} else {
-			throw new UsernameNotFoundException("Uusário " + username + " não localizado");
+			throw new UsernameNotFoundException("Usuário " + username + " não localizado");
 		}
 
 	}
