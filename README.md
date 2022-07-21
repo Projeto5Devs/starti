@@ -6,7 +6,7 @@
 [![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://https://maven.apache.org/)
 [![Eclipse](https://badgen.net/badge/icon/eclipse?icon=eclipse&label)](https://https://eclipse.org/)
 
-<p align="center"> <img src = "https://github.com/Projeto5Devs/starti/blob/main/img/STARTI.png?raw=true" /> </p>
+<p align="center"> <img src = "STARTI.png" /> </p>
 
 
 <h1 align="center"> Site de Vagas para DEVs - starti - Projeto Integrador SERASA </h1>
