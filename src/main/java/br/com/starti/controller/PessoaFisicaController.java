@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.service.PessoaFisicaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name="Endpoint Pessoa Física")
 @RestController
 @RequestMapping("/pessoafisica/v1")
 public class PessoaFisicaController {
@@ -30,6 +33,7 @@ public class PessoaFisicaController {
 	PessoaFisicaService service;
 	
 	@GetMapping(produces={"application/json", "application/xml"})
+	@Operation(summary="Listar todas as pessoas")
 	@ResponseStatus(HttpStatus.OK)
 	public List<PessoaFisicaVO>findAll(){
 		List<PessoaFisicaVO> pessoaFisicaVO = service.buscarTodos();
@@ -38,6 +42,7 @@ public class PessoaFisicaController {
 	}
 	
 	@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
+	@Operation(summary="Procurar pessoa por ID")
 	@ResponseStatus(HttpStatus.OK)
 	public PessoaFisicaVO findById(@PathVariable("id")Long id) {
 		PessoaFisicaVO pessoaFisicaVO = service.buscarPorId(id);
@@ -46,6 +51,7 @@ public class PessoaFisicaController {
 	}
 	
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
+	@Operation(summary="Cadastrar nova pessoa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public PessoaFisicaVO create(@Valid @RequestBody PessoaFisicaVO pessoaFisica) {
 		PessoaFisicaVO pessoaFisicaVO = service.inserir(pessoaFisica);
@@ -54,6 +60,7 @@ public class PessoaFisicaController {
 	}
 
 	@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
+	@Operation(summary="Atualizar dados da pessoa")
 	@ResponseStatus(HttpStatus.OK)
 	public PessoaFisicaVO update(@Valid @RequestBody PessoaFisicaVO pessoaFisica) {
 		PessoaFisicaVO pessoaFisicaVO = service.atualizar(pessoaFisica);	
@@ -62,6 +69,7 @@ public class PessoaFisicaController {
 	}
 	
 	@DeleteMapping(value="/{id}")
+	@Operation(summary="Deletar pessoa")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable("id")Long id) {
 		service.deletar(id);

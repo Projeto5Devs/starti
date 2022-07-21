@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.vo.v1.VagaVO;
 import br.com.starti.service.VagaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name="Endpoint Vaga")
 @RestController
 @RequestMapping("/vaga/v1")
 public class VagaController {
@@ -30,6 +33,7 @@ public class VagaController {
 	VagaService service;
 	
 	@GetMapping(produces={"application/json", "application/xml"})
+	@Operation(summary="Listar todas as vagas")
 	@ResponseStatus(HttpStatus.OK)
 	public List<VagaVO>findAll(){
 		List<VagaVO> vagaVO = service.buscarTodos();
@@ -38,6 +42,7 @@ public class VagaController {
 	}
 	
 	@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
+	@Operation(summary="Procurar vaga por ID")
 	@ResponseStatus(HttpStatus.OK)
 	public VagaVO findById(@PathVariable("id") Long id) {
 		VagaVO vagaVO = service.buscarPorId(id);
@@ -46,6 +51,7 @@ public class VagaController {
 	}
 	
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
+	@Operation(summary="Cadastrar nova vaga")
 	@ResponseStatus(HttpStatus.CREATED)
 	public VagaVO create(@Valid @RequestBody VagaVO vaga) {
 		VagaVO vagaVO = service.inserir(vaga);
@@ -54,6 +60,7 @@ public class VagaController {
 	}
 	
 	@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
+	@Operation(summary="Atualizar dados da vaga")
 	@ResponseStatus(HttpStatus.OK)
 	public VagaVO update(@Valid @RequestBody VagaVO vaga) {
 		VagaVO vagaVO = service.atualizar(vaga);	
@@ -62,6 +69,7 @@ public class VagaController {
 	}
 	
 	@DeleteMapping(value="/{id}")
+	@Operation(summary="Deletar vaga")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
 		service.deletar(id);
