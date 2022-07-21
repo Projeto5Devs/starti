@@ -1,5 +1,8 @@
 package br.com.starti.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,46 +19,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.starti.domain.entity.Endereco;
 import br.com.starti.domain.vo.v1.EnderecoVO;
 import br.com.starti.service.EnderecoService;
-
-
 
 @RestController
 @RequestMapping("/endereco/v1")
 public class EnderecoController {
 
-		@Autowired
-		EnderecoService enderecoService;
-	
-		@GetMapping(produces={"application/json", "application/xml"})
-		@ResponseStatus(HttpStatus.OK)
-		public List<Endereco>findAll(){
-			return enderecoService.buscarTodos();
-		}
-		
-		@GetMapping(value="/{id}", produces={"application/json", "application/xml"})
-		@ResponseStatus(HttpStatus.OK)
-		public Endereco findById(@PathVariable("id")Long id) {
-			return enderecoService.buscarPorId(id);
-		}
-		
-		@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
-		@ResponseStatus(HttpStatus.CREATED)
-		public EnderecoVO create(@Valid @RequestBody EnderecoVO endereco) {
-			return enderecoService.inserir(endereco);
-		}
-	
-		@PutMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
-		@ResponseStatus(HttpStatus.OK)
-		public EnderecoVO update(@Valid @RequestBody EnderecoVO endereco) {
-			return enderecoService.atualizar(endereco);	
-		}
-		
-		@DeleteMapping(value="/{id}")
-		@ResponseStatus(HttpStatus.OK)
-		public void delete(@PathVariable("id")Long id) {
-			enderecoService.deletar(id);
-		}
+	@Autowired
+	EnderecoService enderecoService;
+
+	@GetMapping(produces = { "application/json", "application/xml" })
+	@ResponseStatus(HttpStatus.OK)
+	public List<EnderecoVO> findAll() {
+		List<EnderecoVO> enderecoVO = enderecoService.buscarTodos();
+		enderecoVO.stream()
+				.forEach(p -> p.add(linkTo(methodOn(EnderecoController.class).findById(p.getKey())).withSelfRel()));
+		return enderecoVO;
+	}
+
+	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml" })
+	@ResponseStatus(HttpStatus.OK)
+	public EnderecoVO findById(@PathVariable("id") Long id) {
+		EnderecoVO enderecoVO = enderecoService.buscarPorId(id);
+		enderecoVO.add(linkTo(methodOn(EnderecoController.class).findById(id)).withSelfRel());
+		return enderecoVO;
+	}
+
+	@PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
+			"application/xml" })
+	@ResponseStatus(HttpStatus.CREATED)
+	public EnderecoVO create(@Valid @RequestBody EnderecoVO endereco) {
+		EnderecoVO enderecoVO = enderecoService.inserir(endereco);
+		enderecoVO.add(linkTo(methodOn(EnderecoController.class).findById(enderecoVO.getKey())).withSelfRel());
+		return enderecoVO;
+	}
+
+	@PutMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
+			"application/xml" })
+	@ResponseStatus(HttpStatus.OK)
+	public EnderecoVO update(@Valid @RequestBody EnderecoVO endereco) {
+		EnderecoVO enderecoVO = enderecoService.atualizar(endereco);
+		enderecoVO.add(linkTo(methodOn(EnderecoController.class).findById(enderecoVO.getKey())).withSelfRel());
+		return enderecoVO;
+	}
+
+	@DeleteMapping(value = "/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void delete(@PathVariable("id") Long id) {
+		enderecoService.deletar(id);
+	}
 }
