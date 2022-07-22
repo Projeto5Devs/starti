@@ -14,7 +14,7 @@
 <h3> Diagrama de Classes: </h3>
 <img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/Class%20Diagram0_vagas_v3.png?raw=true"/>
 <h3> Diagrama do Banco de Dados: </h3>
-<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/diagrama_vagas_3.png?raw=true"/>
+<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/modelo_banco.png?raw=true"/>
 <hr>
 
 <h3> Referências </h3>

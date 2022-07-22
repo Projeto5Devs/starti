@@ -1,15 +1,21 @@
 package br.com.starti.domain.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import br.com.starti.domain.enums.TipoPermissao;
 import lombok.Data;
 
 @Data
@@ -24,13 +30,17 @@ public class Permission implements GrantedAuthority, Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private Long idPermissao;
-	private String descricao;
+	@Enumerated(EnumType.STRING)
+	private TipoPermissao descricao;
+	
+	@ManyToMany(mappedBy="permissoes")
+	private Set<Usuario> usuarios;
+	
 	
 	@Override
 	public String getAuthority() {
-		return this.descricao;
+		return this.descricao.toString();
 	}
 
 }

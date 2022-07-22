@@ -12,10 +12,6 @@ CREATE TABLE endereco (
 
 CREATE TABLE usuario (
   id_usuario bigint NOT NULL,
-  account_non_expired bit(1) DEFAULT NULL,
-  account_non_locked bit(1) DEFAULT NULL,
-  credential_non_expired bit(1) DEFAULT NULL,
-  enabled bit(1) DEFAULT NULL,
   password varchar(255)  DEFAULT NULL,
   ultimo_login date DEFAULT NULL,
   username varchar(255)  DEFAULT NULL,

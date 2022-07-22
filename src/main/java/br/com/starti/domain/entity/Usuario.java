@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,8 +28,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-
-
 @Entity
 @Table(name="usuario")
 public class Usuario implements UserDetails, Serializable {
@@ -42,32 +41,25 @@ public class Usuario implements UserDetails, Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_usuario")
 	private Long idUsuario;
+	@Column(unique = true, nullable = false)
 	private String username;
 	private String password;
-	private Boolean accountNonExpired;
-	private Boolean accountNonLocked;
-	private Boolean credentialNonExpired;
-	private Boolean enabled;
 	private LocalDate ultimoLogin;
-	
 	@OneToOne(mappedBy="userId", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Empresa empresa;
-	
 	@OneToOne(mappedBy="userId", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private PessoaFisica pessoaFisica;
-
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "permissoes_usuario", joinColumns = {
-	@JoinColumn(name = "id_usuario") }, inverseJoinColumns = { @JoinColumn(name = "id_permission") })
-	private List<Permission> permissoes;
+	@JoinTable(name = "permissao_usuario", joinColumns = {
+	@JoinColumn(name = "id_usuario") }, inverseJoinColumns = { @JoinColumn(name = "id_permissao") })
+	private Set<Permission> permissoes;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.permissoes;
 	}
-	
 	
 
 	public Long getIdUsuario() {
@@ -82,36 +74,10 @@ public class Usuario implements UserDetails, Serializable {
 
 
 
-	public void setAccountNonExpired(Boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-
-
-	public void setAccountNonLocked(Boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-
-
-
-	public void setCredentialNonExpired(Boolean credentialNonExpired) {
-		this.credentialNonExpired = credentialNonExpired;
-	}
-
-
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-
-
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
 
-
-	
 
 	public LocalDate getUltimoLogin() {
 		return ultimoLogin;
@@ -137,39 +103,40 @@ public class Usuario implements UserDetails, Serializable {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return this.accountNonExpired;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return this.accountNonLocked;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return this.credentialNonExpired;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return this.enabled;
+		return true;
 	}
 
 	public List<String> getRoles() {
 
 		List<String> roles = new ArrayList<>();
 		for (Permission permissao : this.permissoes) {
-			roles.add(permissao.getDescricao());
+			roles.add(permissao.getDescricao().toString());
 		}
 		return roles;
 
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountNonExpired, accountNonLocked, credentialNonExpired, empresa, enabled, idUsuario,
-				password, permissoes, pessoaFisica, ultimoLogin, username);
+		return Objects.hash(empresa, idUsuario, password, permissoes, pessoaFisica, ultimoLogin, username);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -180,14 +147,12 @@ public class Usuario implements UserDetails, Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(accountNonExpired, other.accountNonExpired)
-				&& Objects.equals(accountNonLocked, other.accountNonLocked)
-				&& Objects.equals(credentialNonExpired, other.credentialNonExpired)
-				&& Objects.equals(empresa, other.empresa) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(idUsuario, other.idUsuario) && Objects.equals(password, other.password)
-				&& Objects.equals(permissoes, other.permissoes) && Objects.equals(pessoaFisica, other.pessoaFisica)
-				&& Objects.equals(ultimoLogin, other.ultimoLogin) && Objects.equals(username, other.username);
+		return Objects.equals(empresa, other.empresa) && Objects.equals(idUsuario, other.idUsuario)
+				&& Objects.equals(password, other.password) && Objects.equals(permissoes, other.permissoes)
+				&& Objects.equals(pessoaFisica, other.pessoaFisica) && Objects.equals(ultimoLogin, other.ultimoLogin)
+				&& Objects.equals(username, other.username);
 	}
+
 	
 	
 	

@@ -16,8 +16,6 @@ import br.com.starti.security.jwt.JwtConfigurer;
 import br.com.starti.security.jwt.JwtProvider;
 
 
-
-
 @Configuration
 public class SecurityConfig {
 
@@ -29,7 +27,6 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-	
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
@@ -40,18 +37,20 @@ public class SecurityConfig {
 	
 	 @Bean
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	        http.authorizeRequests()
+	        http
+	        .httpBasic()
+	        .and()
+	        .authorizeRequests()
 	        .antMatchers("/auth/signin", "swagger-ui.html**", "/api-docs/**").permitAll()
-	        .antMatchers("/api/**").authenticated()
+	        .antMatchers("/api/**").hasRole("ADMIN")
 	        .anyRequest().authenticated()
-	        .and().csrf().disable()
+	        .and()
+	        .csrf().disable()
 	        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-	        
 //	        .and().formLogin();
-	        
-//	        return http.build();
 	        .and()
 			.apply(new JwtConfigurer(jwtProvider));
+	        
 			return http.build();
 	    }
 	 
