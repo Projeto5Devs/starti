@@ -3,7 +3,7 @@ package br.com.starti.domain.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -32,6 +33,7 @@ public class Permission implements GrantedAuthority, Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPermissao;
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private TipoPermissao descricao;
 	
 	@ManyToMany(mappedBy="permissoes")

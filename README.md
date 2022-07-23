@@ -12,9 +12,9 @@
 <h1 align="center"> Site de Vagas para DEVs - starti - Projeto Integrador SERASA </h1>
 <p align="center">🚀 API em construção desenvolvida durante aulas de Spring Boot, Data, Security</p>
 <h3> Diagrama de Classes: </h3>
-<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/Class%20Diagram0_vagas_v3.png?raw=true"/>
+<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/Class Diagram0_vagas_v4.png?raw=true"/>
 <h3> Diagrama do Banco de Dados: </h3>
-<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/modelo_banco.png?raw=true"/>
+<img src="https://github.com/Projeto5Devs/starti/blob/main/diagramas/DIAGRAMA_BANCO_FINAL.png?raw=true"/>
 <hr>
 
 <h3> Referências </h3>

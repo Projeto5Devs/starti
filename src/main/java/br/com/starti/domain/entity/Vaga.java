@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -33,7 +32,7 @@ public class Vaga implements Serializable{
 	@Column(name = "id_vaga")
 	private Long id;
 	
-	@NotBlank
+	@NotNull
 	@Size(max=255)
 	@Column(name = "descricao_vaga")
 	private String descricao;
@@ -42,7 +41,7 @@ public class Vaga implements Serializable{
 	@Column(name = "salario_vaga")
 	private double salario;
 	
-	@NotBlank
+	@NotNull
 	@Size(max=15)
 	@Column(name = "modalidade_vaga")
 	private String modalidade;
@@ -52,13 +51,13 @@ public class Vaga implements Serializable{
 	@Column(name = "prazo_vaga")
 	private Date prazo;
 	
-	@NotBlank
+	@NotNull
 	@Size(max=150)
 	@Column(name = "cargo_vaga")
 	private String cargo;
 	
 	@ManyToOne
-    @JoinColumn(name="empresa_id_empresa", nullable=false)
+    @JoinColumn(name="id_empresa", nullable=false)
 	private Empresa empresa;
 	
 	@OneToMany(mappedBy = "vaga")

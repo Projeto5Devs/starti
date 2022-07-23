@@ -1,10 +1,7 @@
 package br.com.starti.domain.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -36,20 +32,20 @@ public class PessoaFisica implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_pessoa_fisica")
+	@Column(name = "id_pessoafisica")
 	private Long idPessoaFisica;
 
-	@NotBlank
+	@NotNull
 	@Column
 	@Size(max = 20)
 	private String nome;
 
-	@NotBlank
+	@NotNull
 	@Column
 	@Size(max = 60)
 	private String sobrenome;
 
-	@NotBlank
+	@NotNull
 	@Column
 	@Size(max = 14)
 	private String cpf;
@@ -62,13 +58,14 @@ public class PessoaFisica implements Serializable {
 	@Embedded
 	private Contato contato;
 
-
+	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "endereco_id_endereco", referencedColumnName = "id_endereco")
+	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 	
+	@NotNull
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="usuario_id_usuario", referencedColumnName = "id_usuario")
+	@JoinColumn(name="id_usuario", referencedColumnName = "id_usuario")
 	private Usuario userId;
 
 	@OneToMany(mappedBy = "pessoafisica")

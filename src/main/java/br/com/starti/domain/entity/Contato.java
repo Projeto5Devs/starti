@@ -3,7 +3,7 @@ package br.com.starti.domain.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -12,12 +12,12 @@ import lombok.Data;
 @Embeddable
 public class Contato {
 	
-	@NotBlank
+	@NotNull
 	@Column
 	@Size(max=25)
 	private String telefone;
 	
-	@NotBlank
+	@NotNull
 	@Email
 	@Size(max=80)
 	@Column(unique= true)

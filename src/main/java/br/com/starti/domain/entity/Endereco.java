@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,38 +31,38 @@ public class Endereco implements Serializable {
 	@Column(name="id_endereco")
 	private Long idEndereco;
 	
-	@NotBlank
 	@Column
 	@Size(max=100)
+	@NotNull
 	private String rua;
 	
-	@NotBlank
 	@Column
 	@Size(max=10)
+	@NotNull
 	private String numero;
 	
 	@Column
 	@Size(max=30)
 	private String complemento;
 	
-	@NotBlank
 	@Column
 	@Size(max=50)
+	@NotNull
 	private String bairro;
 	
-	@NotBlank
 	@Column
 	@Size(max=10)
+	@NotNull
 	private String cep;
 	
-	@NotBlank
 	@Column
 	@Size(max=50)
+	@NotNull
 	private String cidade;
 	
-	@NotBlank
 	@Column
 	@Size(max=2)
+	@NotNull
 	private String uf;
 	
 	@OneToOne(mappedBy = "endereco")

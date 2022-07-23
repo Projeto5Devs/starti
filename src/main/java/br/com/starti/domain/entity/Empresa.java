@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,22 +33,22 @@ public class Empresa implements Serializable{
 	@Column(name="id_empresa")
 	private Long idEmpresa;
 	
-	@NotBlank
+	@NotNull
 	@Column(name="nome_fantasia")
 	@Size(max=80)
 	private String nomeFantasia;
 	
-	@NotBlank
+	@NotNull
 	@Column(name="razao_social")
 	@Size(max=45)
 	private String razaoSocial;
 	
-	@NotBlank
+	@NotNull
 	@Column
 	@Size(max=45)
 	private String segmento;
 	
-	@NotBlank
+	@NotNull
 	@Column
 	@Size(max=20)
 	private String cnpj;
@@ -56,12 +56,14 @@ public class Empresa implements Serializable{
 	@Embedded
 	private Contato contato;
 	
+	@NotNull
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="usuario_id_usuario", referencedColumnName = "id_usuario")
+	@JoinColumn(name="id_usuario", referencedColumnName = "id_usuario")
 	private Usuario userId;
 	
+	@NotNull
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="endereco_id_endereco", referencedColumnName = "id_endereco")
+	@JoinColumn(name="id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 	
 	@OneToMany(mappedBy="empresa")

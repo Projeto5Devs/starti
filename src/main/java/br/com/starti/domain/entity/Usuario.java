@@ -2,7 +2,6 @@ package br.com.starti.domain.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,7 +42,9 @@ public class Usuario implements UserDetails, Serializable {
 	@Column(name="id_usuario")
 	private Long idUsuario;
 	@Column(unique = true, nullable = false)
+	@NotNull
 	private String username;
+	@NotNull
 	private String password;
 	private LocalDate ultimoLogin;
 	@OneToOne(mappedBy="userId", cascade = CascadeType.ALL)

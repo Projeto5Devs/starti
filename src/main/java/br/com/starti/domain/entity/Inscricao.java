@@ -23,12 +23,12 @@ public class Inscricao{
 	
 	@ManyToOne
 	@MapsId("idPessoafisica")
-	@JoinColumn(name="pessoafisica_id_pessoa_fisica")
+	@JoinColumn(name="id_pessoafisica")
 	PessoaFisica pessoafisica;
 	
 	@ManyToOne
 	@MapsId("idVaga")
-	@JoinColumn(name="vaga_id_vaga")
+	@JoinColumn(name="id_vaga")
 	Vaga vaga;
 	
 	@NotBlank
