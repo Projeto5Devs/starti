@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.starti.domain.vo.v1.EnderecoVO;
 import br.com.starti.service.EnderecoService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/endereco/v1")
@@ -30,6 +31,7 @@ public class EnderecoController {
 	EnderecoService enderecoService;
 
 	@GetMapping(produces = { "application/json", "application/xml" })
+	@Operation(summary="Listar todas as empresas")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EnderecoVO> findAll() {
 		List<EnderecoVO> enderecoVO = enderecoService.buscarTodos();
@@ -39,6 +41,7 @@ public class EnderecoController {
 	}
 
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml" })
+	@Operation(summary="Procurar empresa por ID")
 	@ResponseStatus(HttpStatus.OK)
 	public EnderecoVO findById(@PathVariable("id") Long id) {
 		EnderecoVO enderecoVO = enderecoService.buscarPorId(id);
@@ -46,8 +49,8 @@ public class EnderecoController {
 		return enderecoVO;
 	}
 
-	@PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
-			"application/xml" })
+	@PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json","application/xml" })
+	@Operation(summary="Cadastrar nova empresa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EnderecoVO create(@Valid @RequestBody EnderecoVO endereco) {
 		EnderecoVO enderecoVO = enderecoService.inserir(endereco);
@@ -55,8 +58,8 @@ public class EnderecoController {
 		return enderecoVO;
 	}
 
-	@PutMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
-			"application/xml" })
+	@PutMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json","application/xml" })
+	@Operation(summary="Atualizar dados da empresa")
 	@ResponseStatus(HttpStatus.OK)
 	public EnderecoVO update(@Valid @RequestBody EnderecoVO endereco) {
 		EnderecoVO enderecoVO = enderecoService.atualizar(endereco);
@@ -65,6 +68,7 @@ public class EnderecoController {
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Operation(summary="Deletar empresa")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
 		enderecoService.deletar(id);
