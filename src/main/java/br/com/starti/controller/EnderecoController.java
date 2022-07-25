@@ -31,7 +31,7 @@ public class EnderecoController {
 	EnderecoService enderecoService;
 
 	@GetMapping(produces = { "application/json", "application/xml" })
-	@Operation(summary="Listar todas as empresas")
+	@Operation(summary="Listar todos os endereços")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EnderecoVO> findAll() {
 		List<EnderecoVO> enderecoVO = enderecoService.buscarTodos();
@@ -41,7 +41,7 @@ public class EnderecoController {
 	}
 
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml" })
-	@Operation(summary="Procurar empresa por ID")
+	@Operation(summary="Procurar endereço por ID")
 	@ResponseStatus(HttpStatus.OK)
 	public EnderecoVO findById(@PathVariable("id") Long id) {
 		EnderecoVO enderecoVO = enderecoService.buscarPorId(id);
@@ -50,7 +50,7 @@ public class EnderecoController {
 	}
 
 	@PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json","application/xml" })
-	@Operation(summary="Cadastrar nova empresa")
+	@Operation(summary="Cadastrar novo endereço")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EnderecoVO create(@Valid @RequestBody EnderecoVO endereco) {
 		EnderecoVO enderecoVO = enderecoService.inserir(endereco);
@@ -59,7 +59,7 @@ public class EnderecoController {
 	}
 
 	@PutMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json","application/xml" })
-	@Operation(summary="Atualizar dados da empresa")
+	@Operation(summary="Atualizar endereço")
 	@ResponseStatus(HttpStatus.OK)
 	public EnderecoVO update(@Valid @RequestBody EnderecoVO endereco) {
 		EnderecoVO enderecoVO = enderecoService.atualizar(endereco);
@@ -68,7 +68,7 @@ public class EnderecoController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	@Operation(summary="Deletar empresa")
+	@Operation(summary="Deletar endereço")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
 		enderecoService.deletar(id);
