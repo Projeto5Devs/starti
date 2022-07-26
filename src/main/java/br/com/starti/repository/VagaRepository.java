@@ -12,9 +12,11 @@ import br.com.starti.domain.entity.Vaga;
 @Repository 
 public interface VagaRepository  extends JpaRepository<Vaga, Long>{ 
 	
-@Query("SELECT c FROM Vaga c WHERE c.cargo=:cargo")
+ @Query("SELECT c FROM Vaga c WHERE c.cargo=:cargo")
  Page<Vaga> buscarPorCargo(@Param("cargo") String cargo, Pageable pageable);
  
- //Page<Vaga> buscarPorCidade(String cidade, Pageable pageable);
+ @Query("SELECT m FROM Vaga m WHERE m.modalidade=:modalidade")
+ Page<Vaga> buscarPorModalidade(String modalidade, Pageable pageable);
+ 
  //Page<Vaga> buscarPorTipo(String tipo, Pageable pageable);
 }

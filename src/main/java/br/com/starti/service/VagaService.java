@@ -61,6 +61,11 @@ public class VagaService {
 		var page = repository.buscarPorCargo(cargo, pageable);
 		return page.map(this::convertToVagaVO);	
 	}
+	
+	public Page<VagaVO> findByModalidade(String modalidade, Pageable pageable) {
+		var page = repository.buscarPorModalidade(modalidade, pageable);
+		return page.map(this::convertToVagaVO);	
+	}
 
 	private VagaVO convertToVagaVO(Vaga entity) {
 		return DozerConverter.parseObject(entity, VagaVO.class);
