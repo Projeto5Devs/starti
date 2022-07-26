@@ -47,6 +47,11 @@ public class Vaga implements Serializable{
 	private String modalidade;
 	
 	@NotNull
+	@Size(max=15)
+	@Column(name = "tipo_vaga")
+	private String tipo;
+	
+	@NotNull
 	@FutureOrPresent 
 	@Column(name = "prazo_vaga")
 	private Date prazo;
