@@ -33,7 +33,7 @@ public class Vaga implements Serializable{
 	private Long id;
 	
 	@NotNull
-	@Size(max=255)
+	@Size(max=2000)
 	@Column(name = "descricao_vaga")
 	private String descricao;
 	
