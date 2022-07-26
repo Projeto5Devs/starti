@@ -46,7 +46,7 @@ public class VagaController {
 			@RequestParam(value="limit", defaultValue="10") int limit,
 			@RequestParam(value="direction", defaultValue="asc") String direction){
 		var sortDirection = "desc".equalsIgnoreCase(direction)?Direction.DESC:Direction.ASC;
-		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "cargo"));
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "id"));
 		Page<VagaVO> vagaVO = service.buscarTodos(pageable);	
 		vagaVO.stream().forEach(p -> p.add(linkTo(methodOn(VagaController.class).findById(p.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(vagaVO));
