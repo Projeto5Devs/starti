@@ -115,4 +115,19 @@ public class VagaController {
 		vagaVO.stream().forEach(p -> p.add(linkTo(methodOn(VagaController.class).findById(p.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(vagaVO));
 	}
+	
+	@GetMapping(value="/buscarPorTipo/{tipo}", produces={"application/json", "application/xml"})
+	@Operation(summary="Listar vagas por tipo")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<CollectionModel<VagaVO>> findVagaByTipo(
+			@PathVariable("tipo") String tipo,
+			@RequestParam(value="page", defaultValue="0") int page,
+			@RequestParam(value="limit", defaultValue="10") int limit,
+			@RequestParam(value="direction", defaultValue="asc") String direction){
+		var sortDirection = "desc".equalsIgnoreCase(direction)?Direction.DESC:Direction.ASC;
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "cargo"));
+		Page<VagaVO> vagaVO = service.findByTipo(tipo, pageable);	
+		vagaVO.stream().forEach(p -> p.add(linkTo(methodOn(VagaController.class).findById(p.getKey())).withSelfRel()));
+		return ResponseEntity.ok(CollectionModel.of(vagaVO));
+	}
 }

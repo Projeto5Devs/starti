@@ -18,5 +18,6 @@ public interface VagaRepository  extends JpaRepository<Vaga, Long>{
  @Query("SELECT m FROM Vaga m WHERE m.modalidade=:modalidade")
  Page<Vaga> buscarPorModalidade(String modalidade, Pageable pageable);
  
- //Page<Vaga> buscarPorTipo(String tipo, Pageable pageable);
+ @Query("SELECT t FROM Vaga t WHERE t.tipo=:tipo")
+ Page<Vaga> buscarPorTipo(String tipo, Pageable pageable);
 }
