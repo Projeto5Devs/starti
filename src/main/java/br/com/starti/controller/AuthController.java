@@ -56,7 +56,8 @@ public class AuthController {
 			}
 
 			Map<Object, Object> model = new HashMap<>();
-			model.put("username", username);
+			
+//			model.put("username", username);
 			model.put("token", token);
 			
 			return ResponseEntity.ok(model);

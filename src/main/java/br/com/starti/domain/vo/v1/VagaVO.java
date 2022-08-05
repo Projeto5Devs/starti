@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.dozermapper.core.Mapping;
 
 
@@ -25,5 +26,13 @@ public class VagaVO extends RepresentationModel<VagaVO> implements Serializable{
 	private Date prazo;
 	private String cargo;
 	private EmpresaVO empresa;
+	
+	
+	@JsonProperty("empresa")
+	private void unpackNested(Long idEmpresa) {
+		this.empresa = new EmpresaVO();
+		empresa.setKey(idEmpresa);
+	}
+	
 
 }
