@@ -31,9 +31,11 @@ import br.com.starti.service.VagaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+
 @Tag(name="Endpoint Vaga")
 @RestController
 @RequestMapping("/vaga/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VagaController {
 	
 	@Autowired
@@ -62,7 +64,7 @@ public class VagaController {
 		return vagaVO;
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@Operation(summary="Cadastrar nova vaga")
 	@ResponseStatus(HttpStatus.CREATED)

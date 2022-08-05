@@ -13,7 +13,7 @@ public class WebConfiguration implements WebMvcConfigurer{
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer.favorParameter(false)
 		.ignoreAcceptHeader(false)
-		.defaultContentType(MediaType.APPLICATION_JSON)
+		.defaultContentType(MediaType.TEXT_HTML)
 		.mediaType("json", MediaType.APPLICATION_JSON)
 		.mediaType("xml", MediaType.APPLICATION_XML);
 	}
@@ -21,7 +21,6 @@ public class WebConfiguration implements WebMvcConfigurer{
 
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-		.allowedHeaders("*")
 		.allowedOrigins("http://localhost:4200")
 		.allowedMethods("GET","PUT","POST","DELETE","PATH","OPTIONS","TRACE","HEAD","CONNECT");
 	}
