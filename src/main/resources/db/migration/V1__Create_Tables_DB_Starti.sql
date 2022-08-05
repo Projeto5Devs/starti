@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS vaga (
   cargo_vaga varchar(150) NOT NULL,
   descricao_vaga varchar(255) NOT NULL,
   modalidade_vaga varchar(15) NOT NULL,
+  tipo_vaga varchar(15) NOT NULL,
   prazo_vaga datetime NOT NULL,
   salario_vaga double DEFAULT NULL,
   id_empresa bigint NOT NULL,

@@ -1,8 +1,8 @@
 package br.com.starti.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
@@ -24,8 +24,9 @@ public class VagaService {
 		return vo;
 	}
 	
-	public List<VagaVO> buscarTodos(){
-		return DozerConverter.parseListObject(repository.findAll(), VagaVO.class);
+	public Page<VagaVO> buscarTodos(Pageable pageable){
+		var page = repository.findAll(pageable);
+		return page.map(this::convertToVagaVO);
 	}
 
 	public VagaVO buscarPorId(Long id) {
@@ -55,4 +56,24 @@ public class VagaService {
 		var vo = DozerConverter.parseObject(repository.save(entity), VagaVO.class);
 		return vo;
 	}
+	
+	public Page<VagaVO> findByCargo(String cargo, Pageable pageable) {
+		var page = repository.buscarPorCargo(cargo, pageable);
+		return page.map(this::convertToVagaVO);	
+	}
+	
+	public Page<VagaVO> findByModalidade(String modalidade, Pageable pageable) {
+		var page = repository.buscarPorModalidade(modalidade, pageable);
+		return page.map(this::convertToVagaVO);	
+	}
+	
+	public Page<VagaVO> findByTipo(String tipo, Pageable pageable) {
+		var page = repository.buscarPorTipo(tipo, pageable);
+		return page.map(this::convertToVagaVO);	
+	}
+
+	private VagaVO convertToVagaVO(Vaga entity) {
+		return DozerConverter.parseObject(entity, VagaVO.class);
+	}
+	
 }

@@ -1,9 +1,8 @@
 package br.com.starti.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
@@ -24,9 +23,11 @@ public class PessoaFisicaService  {
 		return vo;
 	}
 	
-	public List<PessoaFisicaVO> buscarTodos() {
-		return DozerConverter.parseListObject(repository.findAll(), PessoaFisicaVO.class);
+	public Page<PessoaFisicaVO> buscarTodos(Pageable pageable) {
+		var page = repository.findAll(pageable);
+		return page.map(this::convertToPessoaFisicaVO);
 	}
+
 	
 	public PessoaFisicaVO buscarPorId(Long id) {
 		var entity = repository.findById(id)
@@ -55,5 +56,8 @@ public class PessoaFisicaService  {
 		return vo;
 	}
 
+	private PessoaFisicaVO convertToPessoaFisicaVO(PessoaFisica entity) {
+		return DozerConverter.parseObject(entity, PessoaFisicaVO.class);
+	}
 
 }
