@@ -25,6 +25,7 @@ public class VagaVO extends RepresentationModel<VagaVO> implements Serializable{
 	private String modalidade;
 	private String tipo;
 	private Date prazo;
+	private Date dataCriacao;
 	private String cargo;
 	private EmpresaVO empresa;
 	

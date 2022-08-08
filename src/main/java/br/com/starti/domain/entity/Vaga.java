@@ -56,6 +56,9 @@ public class Vaga implements Serializable{
 	@Column(name = "prazo_vaga")
 	private Date prazo;
 	
+	@Column(name = "data_criacao")
+	private Date dataCriacao;
+	
 	@NotNull
 	@Size(max=150)
 	@Column(name = "cargo_vaga")

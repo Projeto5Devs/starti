@@ -3,6 +3,7 @@ package br.com.starti.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,6 +42,7 @@ public class SecurityConfig {
 	        .httpBasic()
 	        .and()
 	        .authorizeRequests()
+	        .antMatchers(HttpMethod.GET, "/vaga/v1").permitAll()
 	        .antMatchers("/auth/signin", "swagger-ui.html**", "/api-docs/**").permitAll()
 	        .antMatchers("/api/**").hasRole("ADMIN")
 	        .anyRequest().authenticated()
