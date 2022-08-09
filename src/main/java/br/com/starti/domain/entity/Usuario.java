@@ -27,7 +27,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name="usuario")
 public class Usuario implements UserDetails, Serializable {
@@ -54,6 +58,7 @@ public class Usuario implements UserDetails, Serializable {
 	@JsonIgnore
 	private PessoaFisica pessoaFisica;
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
 	@JoinTable(name = "permissao_usuario", joinColumns = {
 	@JoinColumn(name = "id_usuario") }, inverseJoinColumns = { @JoinColumn(name = "id_permissao") })
 	private Set<Permission> permissoes;
@@ -134,27 +139,8 @@ public class Usuario implements UserDetails, Serializable {
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(empresa, idUsuario, password, permissoes, pessoaFisica, ultimoLogin, username);
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		return Objects.equals(empresa, other.empresa) && Objects.equals(idUsuario, other.idUsuario)
-				&& Objects.equals(password, other.password) && Objects.equals(permissoes, other.permissoes)
-				&& Objects.equals(pessoaFisica, other.pessoaFisica) && Objects.equals(ultimoLogin, other.ultimoLogin)
-				&& Objects.equals(username, other.username);
-	}
-
+	
+	
 	
 	
 	
