@@ -49,6 +49,7 @@ public class PessoaFisicaService  {
 		entity.setCpf(pessoaFisica.getCpf());
 		entity.setDataDeNascimento(pessoaFisica.getDataDeNascimento());
 		entity.setEndereco(pessoaFisica.getEndereco());
+		entity.setUserId(pessoaFisica.getUsuario());
 		entity.setNome(pessoaFisica.getNome());
 		entity.setSobrenome(pessoaFisica.getSobrenome());
 		

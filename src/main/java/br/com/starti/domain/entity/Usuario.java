@@ -44,18 +44,24 @@ public class Usuario implements UserDetails, Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_usuario")
 	private Long idUsuario;
-	@Column(unique = true, nullable = false)
+	
+	@Column(unique = true)
 	@NotNull
 	private String username;
+	
 	@NotNull
 	private String password;
+	
 	private LocalDate ultimoLogin;
+	
 	@OneToOne(mappedBy="userId", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Empresa empresa;
+	
 	@OneToOne(mappedBy="userId", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private PessoaFisica pessoaFisica;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JsonIgnore
 	@JoinTable(name = "permissao_usuario", joinColumns = {
