@@ -44,7 +44,6 @@ public class SecurityConfig {
 	        .authorizeRequests()
 	        .antMatchers(HttpMethod.GET, "/vaga/v1").permitAll()
 	        .antMatchers("/auth/signin", "swagger-ui.html**", "/api-docs/**", "/pessoafisica/v1", "/empresas/v1").permitAll()
-	        .antMatchers("/api/**").hasRole("ADMIN")
 	        .anyRequest().authenticated()
 	        .and()
 	        .csrf().disable()

@@ -23,14 +23,14 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name="usuario")
 public class Usuario implements UserDetails, Serializable {
@@ -72,6 +72,7 @@ public class Usuario implements UserDetails, Serializable {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.permissoes;
 	}
+	
 	
 
 	public Long getIdUsuario() {
@@ -142,6 +143,50 @@ public class Usuario implements UserDetails, Serializable {
 		return roles;
 
 	}
+
+
+
+	public PessoaFisica getPessoaFisica() {
+		return pessoaFisica;
+	}
+
+
+
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
+	}
+
+
+
+	public Set<Permission> getPermissoes() {
+		return permissoes;
+	}
+
+
+
+	public void setPermissoes(Set<Permission> permissoes) {
+		this.permissoes = permissoes;
+	}
+
+
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 
 
 	
