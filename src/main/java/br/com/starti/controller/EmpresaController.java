@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +59,8 @@ public class EmpresaController {
 	@Operation(summary="Cadastrar nova empresa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EmpresaVO create(@Valid @RequestBody EmpresaVO empresa) {
+		
+		empresa.getUserId().setPassword(new BCryptPasswordEncoder().encode(empresa.getUserId().getPassword()));
 		EmpresaVO empresaVO = empresaService.inserir(empresa);
 		empresaVO.add(linkTo(methodOn(EmpresaController.class).findById(empresaVO.getKey())).withSelfRel());
 		return empresaVO;
