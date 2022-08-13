@@ -7,6 +7,9 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
 
+import br.com.starti.domain.entity.Contato;
+import br.com.starti.domain.entity.Endereco;
+import br.com.starti.domain.entity.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +29,9 @@ public class EmpresaVO extends RepresentationModel<EmpresaVO> implements Seriali
 	private String razaoSocial;
 	private String segmento;
 	private String cnpj;
+	private Contato contato;
+	private Endereco endereco;
+	private Usuario userId;
 	
 	@Override
 	public int hashCode() {
