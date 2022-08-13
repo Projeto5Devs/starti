@@ -3,6 +3,9 @@ package br.com.starti.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.starti.domain.entity.Permission;
+import br.com.starti.domain.entity.Usuario;
+import br.com.starti.domain.enums.TipoPermissao;
 import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.service.PessoaFisicaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -65,6 +72,10 @@ public class PessoaFisicaController {
 	@Operation(summary="Cadastrar nova pessoa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public PessoaFisicaVO create(@Valid @RequestBody PessoaFisicaVO pessoaFisica) {
+		pessoaFisica.getUserId().setPassword(new BCryptPasswordEncoder().encode(pessoaFisica.getUserId().getPassword()));
+
+		
+		
 		PessoaFisicaVO pessoaFisicaVO = service.inserir(pessoaFisica);
 		pessoaFisicaVO.add(linkTo(methodOn(PessoaFisicaController.class).findById(pessoaFisicaVO.getKey())).withSelfRel());
 		return pessoaFisicaVO;

@@ -2,6 +2,7 @@ package br.com.starti.domain.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,7 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table(name = "pessoa_fisica")
 public class PessoaFisica implements Serializable {
@@ -67,9 +68,80 @@ public class PessoaFisica implements Serializable {
 	private Usuario userId;
 
 	@OneToMany(mappedBy = "pessoafisica")
-	Set<Inscricao> inscricoes;
+	List<Inscricao> inscricoes;
+
+	public Long getIdPessoaFisica() {
+		return idPessoaFisica;
+	}
+
+	public void setIdPessoaFisica(Long idPessoaFisica) {
+		this.idPessoaFisica = idPessoaFisica;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Date getDataDeNascimento() {
+		return dataDeNascimento;
+	}
+
+	public void setDataDeNascimento(Date dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Usuario getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Usuario userId) {
+		this.userId = userId;
+	}
+
+	public List<Inscricao> getInscricoes() {
+		return inscricoes;
+	}
+
+	public void setInscricoes(List<Inscricao> inscricoes) {
+		this.inscricoes = inscricoes;
+	}
 
 
-	
 
 }

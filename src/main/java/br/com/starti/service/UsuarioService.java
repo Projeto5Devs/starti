@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
@@ -38,7 +39,9 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 	public UsuarioVO inserir(UsuarioVO usuario) {
+		
 		var entity = DozerConverter.parseObject(usuario, Usuario.class);
+		entity.setPassword(new BCryptPasswordEncoder().encode(entity.getPassword()));
 		var vo = DozerConverter.parseObject(repository.save(entity), UsuarioVO.class);
 		return vo;
 	}

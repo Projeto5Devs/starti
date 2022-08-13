@@ -11,9 +11,9 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import lombok.Data;
 
-@Data
+
+
 @Entity
 @Table(name="inscricao")
 public class Inscricao{
