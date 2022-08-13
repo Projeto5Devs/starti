@@ -29,9 +29,10 @@ public class EmpresaVO extends RepresentationModel<EmpresaVO> implements Seriali
 	private String razaoSocial;
 	private String segmento;
 	private String cnpj;
+	private Usuario userId;
 	private Contato contato;
 	private Endereco endereco;
-	private Usuario userId;
+	
 	
 	@Override
 	public int hashCode() {
