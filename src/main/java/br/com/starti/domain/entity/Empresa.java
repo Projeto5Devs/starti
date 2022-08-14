@@ -23,7 +23,6 @@ import lombok.Data;
 
 
 
-@Data
 @Entity
 @Table(name="empresa")
 public class Empresa implements Serializable{
@@ -72,7 +71,72 @@ public class Empresa implements Serializable{
 	@JsonIgnore
 	private Set<Vaga> vagas;
 
+	public Long getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(Long idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
+	}
+
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+	}
+
+	public String getSegmento() {
+		return segmento;
+	}
+
+	public void setSegmento(String segmento) {
+		this.segmento = segmento;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public Usuario getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Usuario userId) {
+		this.userId = userId;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	
 
+	
 	
 }

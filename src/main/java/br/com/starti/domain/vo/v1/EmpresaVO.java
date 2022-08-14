@@ -53,8 +53,6 @@ public class EmpresaVO extends RepresentationModel<EmpresaVO> implements Seriali
 				&& Objects.equals(segmento, other.segmento);
 	}
 
-	public Long getKey() {
-		return null;
-	}
+
 
 }

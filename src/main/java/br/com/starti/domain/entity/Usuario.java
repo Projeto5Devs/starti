@@ -23,12 +23,9 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
@@ -134,6 +131,7 @@ public class Usuario implements UserDetails, Serializable {
 		return true;
 	}
 
+	@JsonIgnore
 	public List<String> getRoles() {
 
 		List<String> roles = new ArrayList<>();

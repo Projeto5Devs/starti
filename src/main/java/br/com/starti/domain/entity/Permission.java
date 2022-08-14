@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.starti.domain.enums.TipoPermissao;
 import lombok.Data;
 
@@ -36,7 +38,9 @@ public class Permission implements GrantedAuthority, Serializable{
 	@NotNull
 	private TipoPermissao descricao;
 	
+	
 	@ManyToMany(mappedBy="permissoes")
+	@JsonIgnore
 	private Set<Usuario> usuarios;
 	
 	
