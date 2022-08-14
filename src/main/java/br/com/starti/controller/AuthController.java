@@ -48,7 +48,7 @@ public class AuthController {
 			var token = "";
 			
 			if(user != null) {
-				token = jwtProvider.createToken(username, user.getRoles());
+				token = jwtProvider.createToken(username, user.getRoles(), user.getIdUsuario());
 				
 			} else {
 				throw new UsernameNotFoundException("Usuário" + username + " não localizado");

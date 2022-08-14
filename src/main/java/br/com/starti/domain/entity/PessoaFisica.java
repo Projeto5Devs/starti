@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 
@@ -67,7 +69,8 @@ public class PessoaFisica implements Serializable {
 	@JoinColumn(name="id_usuario", referencedColumnName = "id_usuario")
 	private Usuario userId;
 
-	@OneToMany(mappedBy = "pessoafisica")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "pessoafisica")
 	List<Inscricao> inscricoes;
 
 	public Long getIdPessoaFisica() {
@@ -134,13 +137,7 @@ public class PessoaFisica implements Serializable {
 		this.userId = userId;
 	}
 
-	public List<Inscricao> getInscricoes() {
-		return inscricoes;
-	}
 
-	public void setInscricoes(List<Inscricao> inscricoes) {
-		this.inscricoes = inscricoes;
-	}
 
 
 

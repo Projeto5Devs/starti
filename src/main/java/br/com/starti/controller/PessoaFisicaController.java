@@ -29,9 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.starti.domain.entity.Permission;
-import br.com.starti.domain.entity.Usuario;
-import br.com.starti.domain.enums.TipoPermissao;
+
 import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.service.PessoaFisicaService;
 import io.swagger.v3.oas.annotations.Operation;

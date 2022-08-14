@@ -40,9 +40,10 @@ public class JwtProvider {
 	}
 	
 	//Irá gerar o Token---------------------------------------------------
-	public String createToken(String username, List<String>roles) {
+	public String createToken(String username, List<String>roles, Long idUsuario) {
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("roles", roles);
+		claims.put("id", idUsuario);
 		Date now = new Date();
 		Date tempoValidadeToken = new Date(now.getTime() + validate );
 		
