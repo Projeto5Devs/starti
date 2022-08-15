@@ -3,6 +3,7 @@ package br.com.starti.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,7 +11,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.starti.domain.entity.Permission;
 import br.com.starti.domain.vo.v1.EmpresaVO;
+import br.com.starti.repository.PermissionRepository;
 import br.com.starti.service.EmpresaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,6 +37,9 @@ public class EmpresaController {
 	EmpresaService empresaService;
 	
 
+	@Autowired
+	PermissionRepository permissionRepository;
+	
 	@GetMapping(produces={"application/json", "application/xml"})
 	@Operation(summary="Listar todas as empresas")
 	@ResponseStatus(HttpStatus.OK)
@@ -59,7 +64,9 @@ public class EmpresaController {
 	@Operation(summary="Cadastrar nova empresa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EmpresaVO create(@Valid @RequestBody EmpresaVO empresa) {
-		
+		Permission permission = permissionRepository.findByDescricao("ROLE_USER_EMPRESA");
+		List<Permission> lista = Arrays.asList(permission); 
+		empresa.getUserId().setPermissoes(lista);
 		empresa.getUserId().setPassword(new BCryptPasswordEncoder().encode(empresa.getUserId().getPassword()));
 		EmpresaVO empresaVO = empresaService.inserir(empresa);
 		empresaVO.add(linkTo(methodOn(EmpresaController.class).findById(empresaVO.getKey())).withSelfRel());

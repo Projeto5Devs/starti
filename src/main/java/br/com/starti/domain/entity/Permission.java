@@ -1,6 +1,7 @@
 package br.com.starti.domain.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
@@ -41,7 +42,7 @@ public class Permission implements GrantedAuthority, Serializable{
 	
 	@ManyToMany(mappedBy="permissoes")
 	@JsonIgnore
-	private Set<Usuario> usuarios;
+	private List<Usuario> usuarios;
 	
 	
 	@Override

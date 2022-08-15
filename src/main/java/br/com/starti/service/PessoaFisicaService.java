@@ -1,5 +1,7 @@
 package br.com.starti.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
+import br.com.starti.domain.entity.Permission;
 import br.com.starti.domain.entity.PessoaFisica;
 import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.exception.ResourceNotFoundException;
+import br.com.starti.repository.PermissionRepository;
 import br.com.starti.repository.PessoaFisicaRepository;
 
 @Service
@@ -19,8 +23,14 @@ public class PessoaFisicaService  {
 	@Autowired
 	PessoaFisicaRepository repository;
 	
+	@Autowired
+	PermissionRepository permissionRepository;
+	
 	public PessoaFisicaVO inserir(PessoaFisicaVO pessoaFisica) {
+		Permission permission = permissionRepository.findByDescricao("ROLE_USER_PF");
+		List<Permission> list = Arrays.asList(permission);   
 		var entity = DozerConverter.parseObject(pessoaFisica, PessoaFisica.class);
+		entity.getUserId().setPermissoes(list);
 		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
 		return vo;
 	}
@@ -30,6 +40,11 @@ public class PessoaFisicaService  {
 		return page.map(this::convertToPessoaFisicaVO);
 	}
 
+	
+	public PessoaFisica buscarPorIdUsuario(Long id) {
+		return repository.findByUsuario(id);
+
+	}
 	
 	
 	public PessoaFisicaVO buscarPorId(Long id) {

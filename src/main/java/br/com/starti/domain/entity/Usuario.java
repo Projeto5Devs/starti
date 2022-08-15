@@ -61,16 +61,18 @@ public class Usuario implements UserDetails, Serializable {
 	private PessoaFisica pessoaFisica;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonIgnore
+
 	@JoinTable(name = "permissao_usuario", joinColumns = {
 	@JoinColumn(name = "id_usuario") }, inverseJoinColumns = { @JoinColumn(name = "id_permissao") })
-	private Set<Permission> permissoes;
+	private List<Permission> permissoes;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.permissoes;
 	}
 	
+	
+	 
 	
 
 	public Long getIdUsuario() {
@@ -157,13 +159,13 @@ public class Usuario implements UserDetails, Serializable {
 
 
 
-	public Set<Permission> getPermissoes() {
+	public List<Permission> getPermissoes() {
 		return permissoes;
 	}
 
 
 
-	public void setPermissoes(Set<Permission> permissoes) {
+	public void setPermissoes(List<Permission> permissoes) {
 		this.permissoes = permissoes;
 	}
 

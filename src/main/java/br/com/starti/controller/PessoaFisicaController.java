@@ -3,8 +3,6 @@ package br.com.starti.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -29,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import br.com.starti.domain.entity.PessoaFisica;
 import br.com.starti.domain.vo.v1.PessoaFisicaVO;
 import br.com.starti.service.PessoaFisicaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,6 +40,8 @@ public class PessoaFisicaController {
 
 	@Autowired
 	PessoaFisicaService service;
+	
+
 	
 	@GetMapping(produces={"application/json", "application/xml"})
 	@Operation(summary="Listar todas as pessoas")
@@ -66,14 +66,19 @@ public class PessoaFisicaController {
 		return pessoaFisicaVO;
 	}
 	
+	@GetMapping(value="/usuario/{id}", produces={"application/json", "application/xml"})
+	@Operation(summary="Procurar pessoa por ID")
+	@ResponseStatus(HttpStatus.OK)
+	public PessoaFisica findByIdUsuario(@PathVariable("id")Long id) {
+		return service.buscarPorIdUsuario(id);
+
+	}
+	
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@Operation(summary="Cadastrar nova pessoa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public PessoaFisicaVO create(@Valid @RequestBody PessoaFisicaVO pessoaFisica) {
 		pessoaFisica.getUserId().setPassword(new BCryptPasswordEncoder().encode(pessoaFisica.getUserId().getPassword()));
-
-		
-		
 		PessoaFisicaVO pessoaFisicaVO = service.inserir(pessoaFisica);
 		pessoaFisicaVO.add(linkTo(methodOn(PessoaFisicaController.class).findById(pessoaFisicaVO.getKey())).withSelfRel());
 		return pessoaFisicaVO;

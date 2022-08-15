@@ -25,12 +25,17 @@ public class InscricaoService {
 		return repository.save(inscricao);
 		
 	}
-	
-	
+
 	public List<Inscricao> buscarTodos() {
 		return repository.findAll();
 	}
 	
+	public List<Inscricao>buscarPorCandidato(Long id){
+		return repository.findByCandidato(id);
+	}
 	
+	public void deletarPorIdVaga(Long id) {
+		repository.deleteByIdVaga(id);
+	}
 	
 }
