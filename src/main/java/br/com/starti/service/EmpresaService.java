@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.starti.adapter.DozerConverter;
 import br.com.starti.domain.entity.Empresa;
+import br.com.starti.domain.entity.PessoaFisica;
 import br.com.starti.domain.vo.v1.EmpresaVO;
 import br.com.starti.exception.ResourceNotFoundException;
 import br.com.starti.repository.EmpresaRepository;
@@ -35,6 +36,11 @@ public class EmpresaService {
 	
 	public void deletar(Long id) {
 		empresaRepository.deleteById(id);
+	}
+	
+	public Empresa buscarPorUsuario(Long id) {
+		return empresaRepository.findByUsuario(id);
+
 	}
 	
 	public EmpresaVO atualizar(EmpresaVO empresa) {

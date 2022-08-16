@@ -74,6 +74,10 @@ public class VagaService {
 		return repository.buscarPorTipoAndModalidade(tipo, modalidade);
 	}
 	
+	public List<Vaga> buscarPorEmpresa(Long id) {
+		return repository.buscarPorEmpresa(id);
+	}
+	
 	public Page<VagaVO> findByTipo(String tipo, Pageable pageable) {
 		var page = repository.buscarPorTipo(tipo, pageable);
 		return page.map(this::convertToVagaVO);	

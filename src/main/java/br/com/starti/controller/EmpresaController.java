@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.starti.domain.entity.Empresa;
 import br.com.starti.domain.entity.Permission;
+import br.com.starti.domain.entity.PessoaFisica;
 import br.com.starti.domain.vo.v1.EmpresaVO;
 import br.com.starti.repository.PermissionRepository;
 import br.com.starti.service.EmpresaService;
@@ -81,6 +83,14 @@ public class EmpresaController {
 		EmpresaVO empresaVO = empresaService.atualizar(empresa);	
 		empresaVO.add(linkTo(methodOn(EmpresaController.class).findById(empresaVO.getKey())).withSelfRel());
 		return empresaVO;
+	}
+	
+	@GetMapping(value="/usuario/{id}", produces={"application/json", "application/xml"})
+	@Operation(summary="Procurar pessoa por ID Usuário")
+	@ResponseStatus(HttpStatus.OK)
+	public Empresa findByIdUsuario(@PathVariable("id")Long id) {
+		return empresaService.buscarPorUsuario(id);
+
 	}
 	
 	@DeleteMapping(value="/{id}")

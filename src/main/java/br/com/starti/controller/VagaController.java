@@ -75,8 +75,14 @@ public class VagaController {
 		return service.buscarPorTipoAndModalidade(tipo, modalidade);
 	}
 	
+	@GetMapping(value="/buscarPorEmpresa/{id}", produces={"application/json", "application/xml"})
+	@Operation(summary="Procurar vaga por Empresa")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Vaga> findByEmpresa(@PathVariable("id")Long id) {
+		return service.buscarPorEmpresa(id);
+	}
 	
-
+	
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})
 	@Operation(summary="Cadastrar nova vaga")
 	@ResponseStatus(HttpStatus.CREATED)

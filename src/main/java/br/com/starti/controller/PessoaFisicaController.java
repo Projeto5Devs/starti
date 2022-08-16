@@ -67,7 +67,7 @@ public class PessoaFisicaController {
 	}
 	
 	@GetMapping(value="/usuario/{id}", produces={"application/json", "application/xml"})
-	@Operation(summary="Procurar pessoa por ID")
+	@Operation(summary="Procurar pessoa por ID Usuário")
 	@ResponseStatus(HttpStatus.OK)
 	public PessoaFisica findByIdUsuario(@PathVariable("id")Long id) {
 		return service.buscarPorIdUsuario(id);

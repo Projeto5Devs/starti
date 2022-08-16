@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository; 
  
 import br.com.starti.domain.entity.Vaga; 
@@ -23,10 +23,11 @@ public interface VagaRepository  extends JpaRepository<Vaga, Long>{
  @Query("SELECT t FROM Vaga t WHERE t.tipo=:tipo")
  Page<Vaga> buscarPorTipo(String tipo, Pageable pageable);
  
- 
  @Query("SELECT v FROM Vaga v WHERE  v.tipo like :tipo and v.modalidade like :modalidade")
  List<Vaga> buscarPorTipoAndModalidade(String tipo, String modalidade);
  
+ @Query(value="SELECT * FROM Vaga WHERE id_empresa=:idEmpresa", nativeQuery=true)
+ List<Vaga>buscarPorEmpresa(@Param("idEmpresa")Long idEmpresa);
 
 
 }
