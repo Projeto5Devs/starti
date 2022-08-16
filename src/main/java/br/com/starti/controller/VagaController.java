@@ -3,6 +3,8 @@ package br.com.starti.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.starti.domain.entity.Vaga;
 import br.com.starti.domain.vo.v1.VagaVO;
 import br.com.starti.service.VagaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -63,6 +66,15 @@ public class VagaController {
 		vagaVO.add(linkTo(methodOn(VagaController.class).findById(id)).withSelfRel());
 		return vagaVO;
 	}
+	
+	
+	@GetMapping(value="/buscarCargoEModalidade", produces={"application/json", "application/xml"})
+	@Operation(summary="Procurar vaga por Cargo e Modalidade")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Vaga> findByCargoEModalidade(@RequestParam(required=false) String tipo, @RequestParam(required=false) String modalidade) {
+		return service.buscarPorTipoAndModalidade(tipo, modalidade);
+	}
+	
 	
 
 	@PostMapping(consumes= {"application/json", "application/xml"},produces={"application/json", "application/xml"})

@@ -1,5 +1,7 @@
 package br.com.starti.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -58,13 +60,18 @@ public class VagaService {
 	}
 	
 	public Page<VagaVO> findByCargo(String cargo, Pageable pageable) {
-		var page = repository.buscarPorCargo(cargo, pageable);
+		var page = repository.findByCargoContainingIgnoreCase(cargo, pageable);
 		return page.map(this::convertToVagaVO);	
 	}
 	
 	public Page<VagaVO> findByModalidade(String modalidade, Pageable pageable) {
 		var page = repository.buscarPorModalidade(modalidade, pageable);
 		return page.map(this::convertToVagaVO);	
+	}
+	
+	
+	public List<Vaga> buscarPorTipoAndModalidade(String tipo, String modalidade) {
+		return repository.buscarPorTipoAndModalidade(tipo, modalidade);
 	}
 	
 	public Page<VagaVO> findByTipo(String tipo, Pageable pageable) {
