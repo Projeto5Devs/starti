@@ -8,7 +8,13 @@
 
 <p align="center"> <img src = "STARTI.png" /> </p>
 
-
+## Integrantes
+ Dayane Leal - https://www.linkedin.com/in/dayanecbleal/
+ 
+ Bárbara Pimenta - https://www.linkedin.com/in/barbaradsp/
+ 
+ Kelly Pineo - https://www.linkedin.com/in/kelly-pineo/
+ 
 <h1 align="center"> Site de Vagas para DEVs - starti - Projeto Integrador SERASA </h1>
 <p align="center">🚀 API em construção desenvolvida durante aulas de Spring Boot, Data, Security</p>
 <h3> Diagrama de Classes: </h3>
