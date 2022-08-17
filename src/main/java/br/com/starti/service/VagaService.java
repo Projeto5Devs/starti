@@ -50,6 +50,7 @@ public class VagaService {
 		entity.setDescricao(vaga.getDescricao());
 		entity.setSalario(vaga.getSalario());
 		entity.setModalidade(vaga.getModalidade());
+		entity.setTipo(vaga.getTipo());
 		entity.setPrazo(vaga.getPrazo());
 		entity.setCargo(vaga.getCargo());
 		Empresa empresa = DozerConverter.parseObject(vaga.getEmpresa(), Empresa.class);
